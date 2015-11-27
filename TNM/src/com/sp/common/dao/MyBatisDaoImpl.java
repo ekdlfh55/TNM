@@ -211,45 +211,5 @@ public class MyBatisDaoImpl implements CommonDAO {
 			throw e;
 		}		
 	}
-	
-	// ******************************************************************
-	// 프로시져
-	// INSERT, UPDATE, DELETE
-	@Override
-	public void callUpdateProcedure(String id, Object value) throws Exception{
-		try {
-			sqlSession.update(id, value);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			
-			throw e;
-		}
-	}
 
-	// SELECT : OUT 파라미터가 SYS_REFCURSOR 이외의 하나의 레코드(INTEGER 등)
-	@Override
-	public <T> Map<String, T> callSelectOneProcedureMap(String id, Map<String, T> map) throws Exception{
-		try {
-			// select procedure 결과는 map로 리턴한다.
-			sqlSession.selectOne(id, map);
-			return map;
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		
-		return map;
-	}
-	
-	// SELECT : OUT 파라미터가 SYS_REFCURSOR(하나 또는 하나 이상의 레코드)
-	public <T> Map<String, T> callSelectListProcedureMap(String id, Map<String, T> map) throws Exception{
-		try {
-			// select procedure 결과는 map로 리턴한다.
-			sqlSession.selectList(id, map);
-			return map;
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-		
-		return map;
-	}
 }

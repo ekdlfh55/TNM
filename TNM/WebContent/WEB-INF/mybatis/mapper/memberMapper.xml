@@ -4,7 +4,7 @@
 <mapper namespace="member" >
 	<insert id="insertMember_basic" parameterType="com.sp.member.Member">
 		INSERT INTO member_basic(userId,userName,userPwd) 
-			VALUES(#{userId},#{userName},#{userPwd},#{birth},#{email},#{tel}) 
+			VALUES(#{userId},#{userName},#{userPwd}) 
 	</insert>
 	<insert id="insertMember_detail" parameterType="com.sp.member.Member">
 		INSERT INTO member_detail(userId, birth, email, tel, phone, zip, question, answer, genre)
@@ -14,7 +14,7 @@
 
 	<update id="updateMember" parameterType="com.sp.member.Member">
 		UPDATE member SET userName=#{userName}, 
-			userPwd=#{userPwd}, birth=#{birth}, email=#{email},tel=#{tel},modify_date=SYSDATE 
+			userPwd=#{userPwd},birth=#{birth},email=#{email},tel=#{tel},phone=#{phone},zip=#{zip},genre=#{genre}, modify_date=SYSDATE  
 			WHERE userId=#{userId}	
 	</update>
 
