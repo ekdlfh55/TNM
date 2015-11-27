@@ -5,11 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller("mainController")
-@RequestMapping(value="/main.do")
 public class MainController {
-	 
-	@RequestMapping(method=RequestMethod.GET)
-	public String method() {
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String main() throws Exception {
 		return ".mainLayout";
 	}
 }
