@@ -111,6 +111,18 @@
         fade: 1000,
         duration: 7000
     });
+    $(function(){
+ 	   $("input").not($(":button")).keypress(function (evt) {
+ 	        if (evt.keyCode == 13) {
+ 	            var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+ 	            var index = fields.index(this);
+ 	            if ( index > -1 && ( index + 1 ) < fields.length ) {
+ 	                fields.eq( index + 1 ).focus();
+ 	            }
+ 	            return false;
+ 	        }
+ 	     });
+ });
     
     function sendLogin() {
         var f = document.loginForm;
