@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class loginController {
 	
 	@Autowired
-	private MemberService serviec;
+	private MemberService service;
 	
 	// ·Î±×ÀÎ
 	@RequestMapping(value="/member/login",method=RequestMethod.GET)

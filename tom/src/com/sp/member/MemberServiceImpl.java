@@ -49,4 +49,10 @@ public class MemberServiceImpl implements MemberService {
 		return 0;
 	}
 
+	@Override
+	public Member readMember(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
