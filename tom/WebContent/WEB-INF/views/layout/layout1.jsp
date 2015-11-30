@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/css/style.css"><!-- 로그인 -->
 	
+	<!-- CSS Page Style -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/page_error4_404.css">
+    
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/custom.css">
     
@@ -91,6 +94,10 @@
         OwlCarousel.initOwlCarousel();
         ParallaxSlider.initParallaxSlider();
     });
+    
+    $.backstretch([
+        "<%=cp%>/res/main/assets/img/background/background.jpg"
+    ]);
 </script>
 <!--[if lt IE 9]>
     <script src="<%=cp%>/res/main/assets/plugins/respond.js"></script>

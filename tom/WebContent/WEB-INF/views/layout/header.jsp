@@ -7,7 +7,7 @@
 %>
 <script type="text/javascript">
 function sendLogin() {
-    var f = document.loginForm;
+    var f = document.login1Form;
 
 	var str = f.userId.value;
     if(!str) {
@@ -28,7 +28,7 @@ function sendLogin() {
 }
 
 function memberOk() {
-	var f = document.joinForm;
+	var f = document.join1Form;
 	var str;
 
 	str = f.userId.value;
@@ -85,7 +85,7 @@ function memberOk() {
 
     var mode="${mode}";
     if(mode=="created") {
-    	f.action = "<%=cp%>/member/member";
+    	f.action = "<%=cp%>/member/join";
     } 
     f.submit();
 }
@@ -586,7 +586,7 @@ function memberOk() {
             </ul>
 
             <div id="cd-login"> <!-- log in form -->
-                <form class="cd-form" name="loginForm" method="post" action="">
+                <form class="cd-form" name="login1Form" method="post" action="">
                     <p class="social-login">
                         <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
                         <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
@@ -621,7 +621,7 @@ function memberOk() {
             </div> <!-- cd-login -->
 
             <div id="cd-signup"> <!-- sign up form -->
-                <form class="cd-form" name="joinForm" method="post" >
+                <form class="cd-form" name="join1Form" method="post" >
                     <p class="social-login">
                         <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
                         <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>

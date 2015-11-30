@@ -91,7 +91,7 @@
                     <br>
            	   
                  	<label>Address</label>
-	                 <input type="text" name="zip" class="form-control margin-bottom-20" value="${dto.zip}" ${mode=="update" ? "readonly='readonly' style='border:none;' ":""}>	
+	                 <input type="text" name="home" class="form-control margin-bottom-20" value="${dto.zip}" ${mode=="update" ? "readonly='readonly' style='border:none;' ":""}>	
                         	<%-- <div class="col-sm-4">
 	                            <select class="form-control margin-bottom-20">
 	 								<option style="width: 70px" value="">선 택</option>
@@ -142,7 +142,7 @@
 					<label>Question</label>
 					<div class="row">   	
                         	<div class="col-sm-7">
-	                            <select name="Question" class="form-control margin-bottom-20">
+	                            <select name="question" class="form-control margin-bottom-20">
 	 								<option style="width: 70px" value="">원하는 질문을 선택하세요.</option>
 									<option value="가장 기억에 남는 장소는?" >가장 기억에 남는 장소는?</option>
 									<option value="나의 좌우명은?" >나의 좌우명은?</option>
@@ -157,7 +157,7 @@
                         	</div>
                         	
                         	<div class="col-sm-5">                      	      
-	                            <input name="Question1" type="text" class="form-control margin-bottom-20">
+	                            <input name="answer" type="text" class="form-control margin-bottom-20">
 	                        </div>
                      </div>
 					
@@ -278,7 +278,7 @@
             return;
         }
 		
-        str = f.zip.value;
+        str = f.home.value;
     	str = str.trim();
         if(!str) {
             alert("\n주소를 입력하세요. ");
@@ -317,17 +317,17 @@
             return;
         }
         
-        str = f.Question1.value;
+        str = f.answer.value;
         str = str.trim();
         if(!str){
         	alert("\n질문을 입력하세요. ");
-            f.Question1.focus();
+            f.answar.focus();
             return;
         }
 
         var mode="${mode}";
         if(mode=="created") {
-        	f.action = "<%=cp%>/member/member";
+        	f.action = "<%=cp%>/member/join";
         } else if(mode=="update") {
         	f.action = "<%=cp%>/member/update";
         }

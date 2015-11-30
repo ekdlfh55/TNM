@@ -20,7 +20,7 @@
                     <br><Br><br>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <a class="btn-u btn-brd btn-u-light" href="<%=cp%>/main/main.do">메인홈페이지로 가기</a>
+                            <a class="btn-u btn-brd btn-u-light" href="<%=cp%>">메인홈페이지로 가기</a>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,8 @@
     <!--=== End Sticky Footer ===-->
 </div>
 
-<script type="text/javascript">
+<%-- <script type="text/javascript">
     $.backstretch([
       "<%=cp%>/res/main/assets/img/background/background.jpg"
       ])
-</script>
+</script> --%>
