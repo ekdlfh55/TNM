@@ -113,17 +113,20 @@ function memberOk() {
                     	</c:when>
                     	
                     	<c:otherwise>
-                    			<font>${sessionScope.member.userName}</font>님
+                    			<li><font>${sessionScope.member.userName}</font>님</li>
 								&nbsp;|&nbsp;
-								<a href="<%=cp%>/member/logout.do">로그아웃</a>
+								<li><a href="<%=cp%>/member/logout.do">로그아웃</a></li>
 								&nbsp;|&nbsp;
-								<a href="<%=cp%>/pwd.do?mode=update">정보수정</a>
+								<li><a href="<%=cp%>/member/join.do">정보수정</a></li>
 						</c:otherwise>
 					</c:choose>
                     <li class="topbar-devider"></li>
                     <li><a href="<%=cp%>/notice/service.do">고객센터</a></li>
-                    <li class="topbar-devider"></li>
-					<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
+                 
+                    <c:if test="${sessionScope.member.userId=='admin'}">
+                    	<li class="topbar-devider"></li>
+						<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
+					</c:if>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -510,7 +513,6 @@ function memberOk() {
                         </a>
                         <ul class="dropdown-menu">              
                             <li><a href="<%=cp%>/myalbum/mypage.do">마이페이지</a> </li>
-                            <li><a href="<%=cp%>/myalbum/account.do">결제임시</a> </li>
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">Grid Boxed</a>
                                 <ul class="dropdown-menu">
