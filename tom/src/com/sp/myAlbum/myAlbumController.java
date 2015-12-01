@@ -23,4 +23,11 @@ public class myAlbumController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="/account/account",method=RequestMethod.GET)
+	public ModelAndView account(HttpSession session) throws Exception {
+		
+		ModelAndView mav=new ModelAndView(".four.menu5.account.account");	
+		return mav;
+	}
 }

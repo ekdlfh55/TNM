@@ -510,6 +510,7 @@ function memberOk() {
                         </a>
                         <ul class="dropdown-menu">              
                             <li><a href="<%=cp%>/myalbum/mypage.do">마이페이지</a> </li>
+                            <li><a href="<%=cp%>/myalbum/account.do">결제임시</a> </li>
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">Grid Boxed</a>
                                 <ul class="dropdown-menu">
