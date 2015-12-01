@@ -12,4 +12,9 @@
 		VALUES(#{userId},#{birth},#{email},#{tel},#{home},#{question},#{answer},#{genre})
 </insert>
 
+
+<select id="readMember" parameterType="String" resultType="com.sp.member.Member">
+	SELECT a.userId,userName,userPwd,enabled,DATE_FORMAT(birth,'%Y-%m-%d')birth,email,tel,created_date,modify_date
+		FROM member_basic a JOIN member_detail b ON a.userId=b.userId WHERE a.userId=#{userId}
+</select>
 </mapper>

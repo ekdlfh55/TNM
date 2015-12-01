@@ -63,7 +63,7 @@
 	        </div>
 	        <div class="input-group margin-bottom-20">
 	            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	            <input type="text" name="userPwd"  class="form-control" placeholder="Password">
+	            <input type="password" name="userPwd"  class="form-control" placeholder="Password">
 	        </div>
 	        <hr>
 	

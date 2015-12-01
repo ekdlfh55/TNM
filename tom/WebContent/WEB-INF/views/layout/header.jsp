@@ -104,10 +104,22 @@ function memberOk() {
 
             <!-- Topbar -->
             <div class="topbar">
-                <ul class="loginbar pull-right">                    
-                    <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>          
-                    <li class="topbar-devider"></li>
-                    <li><a href="<%=cp%>/member/join.do">회원가입</a></li>
+                <ul class="loginbar pull-right">
+                	<c:choose>
+						<c:when test="${empty sessionScope.member}">                    
+		                    <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>          
+		                    <li class="topbar-devider"></li>
+		                    <li><a href="<%=cp%>/member/join.do">회원가입</a></li>
+                    	</c:when>
+                    	
+                    	<c:otherwise>
+                    			<font>${sessionScope.member.userName}</font>님
+								&nbsp;|&nbsp;
+								<a href="<%=cp%>/member/logout.do">로그아웃</a>
+								&nbsp;|&nbsp;
+								<a href="<%=cp%>/pwd.do?mode=update">정보수정</a>
+						</c:otherwise>
+					</c:choose>
                     <li class="topbar-devider"></li>
                     <li><a href="<%=cp%>/notice/service.do">고객센터</a></li>
                     <li class="topbar-devider"></li>
@@ -632,7 +644,7 @@ function memberOk() {
 					
 					<p class="fieldset">
                         <label class="image-replace cd-username" for="signup-userId">UserId</label>
-                        <input class="full-width has-padding has-border" id="signup-username"  name="userId" type="text" placeholder="Username">         
+                        <input class="full-width has-padding has-border" id="signup-username"  name="userId" type="text" placeholder="UserId">         
                     </p>
                     
                     <p class="fieldset">
@@ -650,7 +662,6 @@ function memberOk() {
                         <label class="image-replace cd-password" for="signup-password1">Again Password</label>
                         <input class="full-width has-padding has-border" id="signup-password1" name="userPwd1" type="text"  placeholder="Again Password">
                         <a href="javascript:void(0);" class="hide-password">Hide</a>
-                        <span class="cd-error-message">Error message here!</span>
                     </p>
 
                     <p class="fieldset">

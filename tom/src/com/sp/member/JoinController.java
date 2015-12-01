@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("member.joinController")
-public class joinController {
+@Controller("member.JoinController")
+public class JoinController {
 	
 	@Autowired
 	private MemberService service;
@@ -30,9 +30,9 @@ public class joinController {
 			System.out.println(e.toString());
 		}
 		
-		ModelAndView mav=new ModelAndView(".member.complete");
+		ModelAndView mav=new ModelAndView("member/complete");
 		if(result==1){
-			mav.setViewName(".member.complete");		
+			mav.setViewName("member/complete");		
 		}else {
 			mav.setViewName(".member.join");
 			mav.addObject("mode", "created");
