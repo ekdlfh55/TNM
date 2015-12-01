@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class adminMusicstoryController {
 	@RequestMapping(value="/admin/musicstory",method=RequestMethod.GET)
 	public ModelAndView musicstory() throws Exception {
-		ModelAndView mav=new ModelAndView(".four.menu3.admin.musicstory");	
+		ModelAndView mav=new ModelAndView(".four.menu3.admin.musicstory");
+		mav.addObject("mode","created");
+		mav.addObject("title", "뮤직스토리 등록");
 		return mav;
 	}
 }
