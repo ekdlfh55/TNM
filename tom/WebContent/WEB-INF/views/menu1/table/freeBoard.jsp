@@ -27,7 +27,7 @@
 	                          </select>
 	                          	<input placeholder="search" type="text" class="form-control" name="searchValue" />
 	                    		<button class="btn btn-warning" type="button" onclick="searchList()"><i class="fa fa-search"></i>검색</button>
-	                    		<button style="float: right;" class="btn btn-warning" type="button" onclick="searchList()"><i class="fa fa-search"></i>글쓰기</button>            
+	                    		<button style="float: right;" class="btn btn-warning" type="button" onclick="javascript:location.href='<%=cp%>/table/created.do';"><i class="fa fa-search"></i>글쓰기</button>            
 	                    </form>
                     </div>
                     <table class="table">

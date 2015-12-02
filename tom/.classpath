@@ -12,7 +12,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/sist/Documents/카카오톡 받은 파일/4. MVC_MySQL_타일즈_마이바티스 3.2.x/환경설정/WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sist/Desktop/4. MVC_MySQL_타일즈_마이바티스 3.2.x/환경설정/WebContent/WEB-INF/lib/mysql-connector-java-5.1.37-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

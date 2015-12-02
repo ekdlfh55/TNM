@@ -5,26 +5,75 @@
 <%
 	String cp=request.getContextPath();
 %>
-<div id="header">
- <!--=== Header ===-->
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+    <title>Login | Unify - Responsive Website Template</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/headers/header-default.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/footers/footer-v1.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/animate.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/font-awesome/css/font-awesome.min.css">
+
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/page_log_reg_v1.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/custom.css">
+</head>
+
+<body>
+<div class="wrapper">
+    <!--=== Header ===-->
     <div class="header">
         <div class="container">
             <!-- Logo -->
-            <a class="logo" href="<%=cp%>">
-                <img style="width: 200px;" src="<%=cp%>/res/main/assets/img/logo.png" alt="Logo">
+            <a class="logo" href="index.html">
+                <img src="<%=cp%>/res/main/assets/img/logo1-default.png" alt="Logo">
             </a>
             <!-- End Logo -->
 
             <!-- Topbar -->
             <div class="topbar">
-                <ul class="loginbar pull-right">                    
-                    <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>          
+                <ul class="loginbar pull-right">
+                    <li class="hoverSelector">
+                        <i class="fa fa-globe"></i>
+                        <a>Languages</a>
+                        <ul class="languages hoverSelectorBlock">
+                            <li class="active">
+                                <a href="#">English <i class="fa fa-check"></i></a>
+                            </li>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">Russian</a></li>
+                            <li><a href="#">German</a></li>
+                        </ul>
+                    </li>
                     <li class="topbar-devider"></li>
-                    <li><a href="<%=cp%>/member/join.do">회원가입</a></li>
+                    <li><a href="page_faq.html">Help</a></li>
                     <li class="topbar-devider"></li>
-                    <li><a href="<%=cp%>/notice/service.do">고객센터</a></li>
-                    <li class="topbar-devider"></li>
-					<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
+                    <li><a href="page_login.html">Login</a></li>
                 </ul>
             </div>
             <!-- End Topbar -->
@@ -39,16 +88,16 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
-            <div class="container" style="width: 60%">
+            <div class="container">
                 <ul class="nav navbar-nav">
                     <!-- Home -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							뮤직
+                            Home
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="<%=cp%>/music/chat.do">톰차트</a></li>
-							<li><a href="<%=cp%>/share/share.do">톰DJ</a></li>
+                            <li><a href="index.html">Option 1: Default Page</a></li>
+
                             <!-- One Page -->
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">Option 2: One Page</a>
@@ -150,12 +199,11 @@
                     <!-- End Home -->
 
                     <!-- Pages -->
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							커뮤니티
+                            Pages
                         </a>
                         <ul class="dropdown-menu">
-             				<li><a href="<%=cp%>/table/freeTable.do">게시판</a></li>
                             <!-- About Pages -->
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">About Pages</a>
@@ -243,11 +291,11 @@
                             <!-- End Pricing Tables -->
 
                             <!-- Login and Registration -->
-                            <li class="dropdown-submenu">
+                            <li class="dropdown-submenu active">
                                 <a href="javascript:void(0);">Login and Registration</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="page_registration.html">Registration Page</a></li>
-                                    <li><a href="page_login.html">Login Page</a></li>
+                                    <li class="active"><a href="page_login.html">Login Page</a></li>
                                     <li><a href="page_registration1.html">Registration Option</a></li>
                                     <li><a href="page_login1.html">Login Option</a></li>
                                 </ul>
@@ -400,17 +448,66 @@
                     </li>
                     <!-- End Pages -->
 
-                    <!-- 뮤직스토리 -->
-                    <li><a href="<%=cp%>/story/story.do">뮤직스토리 </a></li>
-                    <!-- 뮤직스토리 -->
+                    <!-- Blog -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            Blog
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Blog Large Image</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog_large_right_sidebar1.html">Right Sidebar</a></li>
+                                    <li><a href="blog_large_left_sidebar1.html">Left Sidebar</a></li>
+                                    <li><a href="blog_large_full_width1.html">Full Width</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Blog Medium Image</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog_medium_right_sidebar1.html">Right Sidebar</a></li>
+                                    <li><a href="blog_medium_left_sidebar1.html">Left Sidebar</a></li>
+                                    <li><a href="blog_medium_full_width1.html">Full Width</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Blog Item Pages</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog_large_right_sidebar_item1.html">Right Sidebar Item</a></li>
+                                    <li><a href="blog_large_left_sidebar_item1.html">Left Sidebar Item</a></li>
+                                    <li><a href="blog_large_full_width_item1.html">Full Width Item</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Blog Simple Pages</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="blog_large_right_sidebar.html">Right Sidebar Large</a></li>
+                                    <li><a href="blog_medium_right_sidebar.html">Right Sidebar Medium</a></li>
+                                    <li><a href="blog_large_full_width.html">Full Width</a></li>
+                                    <li><a href="blog_large_right_sidebar_item.html">Right Sidebar Item</a></li>
+                                    <li><a href="blog_large_full_width_item.html">Full Width Item</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="blog_masonry_3col.html">Masonry Grid Blog</a></li>
+                            <li><a href="blog_timeline.html">Blog Timeline</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Blog -->
 
                     <!-- Portfolio -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							 마이앨범
+                            Portfolio
                         </a>
-                        <ul class="dropdown-menu">              
-                            <li><a href="<%=cp%>/myalbum/mypage.do">마이페이지</a> </li>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">No Space Boxed</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="portfolio_2_columns_grid_no_space.html">2 Columns</a></li>
+                                    <li><a href="portfolio_3_columns_grid_no_space.html">3 Columns</a></li>
+                                    <li><a href="portfolio_4_columns_grid_no_space.html">4 Columns</a></li>
+                                </ul>
+                            </li>
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">Grid Boxed</a>
                                 <ul class="dropdown-menu">
@@ -479,141 +576,395 @@
                     </li>
                     <!-- End Portfolio -->
 
+                    <!-- Features -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            Features
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Headers</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="feature_header_default.html">Header Default</a></li>
+                                    <li><a href="feature_header_default_no_topbar.html">Header Default without Topbar</a></li>
+                                    <li><a href="feature_header_default_centered.html">Header Default Centered</a></li>
+                                    <li><a href="feature_header_default_fixed.html">Header Default Fixed (Sticky)</a></li>
+                                    <li><a href="feature_header_default_login_popup.html">Header Default Login Popup</a></li>
+                                    <li><a href="feature_header_v1.html">Header v1</a></li>
+                                    <li><a href="feature_header_v2.html">Header v2</a></li>
+                                    <li><a href="feature_header_v3.html">Header v3</a></li>
+                                    <li><a href="feature_header_v4.html">Header v4</a></li>
+                                    <li><a href="feature_header_v4_logo_centered.html">Header v4 Centered Logo</a></li>
+                                    <li><a href="feature_header_v5.html">Header v5</a></li>
+                                    <li><a href="feature_header_v6_transparent.html">Header v6 Transparent</a></li>
+                                    <li><a href="feature_header_v6_semi_dark_transparent.html">Header v6 Dark Transparent</a></li>
+                                    <li><a href="feature_header_v6_semi_white_transparent.html">Header v6 White Transparent</a></li>
+                                    <li><a href="feature_header_v6_border_bottom.html">Header v6 Border Bottom</a></li>
+                                    <li><a href="feature_header_v6_classic_dark.html">Header v6 Classic Dark</a></li>
+                                    <li><a href="feature_header_v6_classic_white.html">Header v6 Classic White</a></li>
+                                    <li><a href="feature_header_v6_dark_dropdown.html">Header v6 Dark Dropdown</a></li>
+                                    <li><a href="feature_header_v6_dark_scroll.html">Header v6 Dark on Scroll</a></li>
+                                    <li><a href="feature_header_v6_dark_search.html">Header v6 Dark Search</a></li>
+                                    <li><a href="feature_header_v6_dark_res_nav.html">Header v6 Dark in Responsive</a></li>
+                                    <li><a href="page_home12.html">Header v7 Left Sidebar</a></li>
+                                    <li><a href="page_home13.html">Header v7 Right Sidebar</a></li>
+                                    <li><a href="feature_header_v8.html">Header v8</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="javascript:void(0);">Footers</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="feature_footer_default.html#footer-default">Footer Default</a></li>
+                                    <li><a href="feature_footer_v1.html#footer-v1">Footer v1</a></li>
+                                    <li><a href="feature_footer_v2.html#footer-v2">Footer v2</a></li>
+                                    <li><a href="feature_footer_v3.html#footer-v3">Footer v3</a></li>
+                                    <li><a href="feature_footer_v4.html#footer-v4">Footer v4</a></li>
+                                    <li><a href="feature_footer_v5.html#footer-v5">Footer v5</a></li>
+                                    <li><a href="feature_footer_v6.html#footer-v6">Footer v6</a></li>
+                                    <li><a href="feature_footer_v7.html#footer-v7">Footer v7</a></li>
+                                    <li><a href="feature_footer_v8.html#footer-v8">Footer v8</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="feature_gallery.html">Gallery Examples</a></li>
+                            <li><a href="feature_animations.html">Animations on Scroll</a></li>
+                            <li><a href="feature_parallax_counters.html">Parallax Counters</a></li>
+                            <li><a href="feature_testimonials_quotes.html">Testimonials and Quotes</a></li>
+                            <li><a href="feature_icon_blocks.html">Icon Blocks</a></li>
+                            <li><a href="feature_team_blocks.html">Team Blocks</a></li>
+                            <li><a href="feature_news_blocks.html">News Blocks</a></li>
+                            <li><a href="feature_parallax_blocks.html">Parallax Blocks</a></li>
+                            <li><a href="feature_funny_boxes.html">Funny Boxes</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Features -->
+
+                    <!-- Shortcodes -->
+                    <li class="dropdown mega-menu-fullwidth">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            Shortcodes
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="mega-menu-content disable-icons">
+                                    <div class="container">
+                                        <div class="row equal-height">
+                                            <div class="col-md-3 equal-height-in">
+                                                <ul class="list-unstyled equal-height-list">
+                                                    <li><h3>Typography &amp; Components</h3></li>
+
+                                                    <!-- Typography -->
+                                                    <li><a href="shortcode_typo_general.html"><i class="fa fa-sort-alpha-asc"></i> General Typography</a></li>
+                                                    <li><a href="shortcode_typo_headings.html"><i class="fa fa-magic"></i> Headings Options</a></li>
+                                                    <li><a href="shortcode_typo_dividers.html"><i class="fa fa-ellipsis-h"></i> Dividers</a></li>
+                                                    <li><a href="shortcode_typo_blockquote.html"><i class="fa fa-quote-left"></i> Blockquote Blocks</a></li>
+                                                    <li><a href="shortcode_typo_boxshadows.html"><i class="fa fa-asterisk"></i> Box Shadows</a></li>
+                                                    <li><a href="shortcode_typo_testimonials.html"><i class="fa fa-comments"></i> Testimonials</a></li>
+                                                    <li><a href="shortcode_typo_tagline_boxes.html"><i class="fa fa-tasks"></i> Tagline Boxes</a></li>
+                                                    <li><a href="shortcode_typo_grid.html"><i class="fa fa-align-justify"></i> Grid Layouts</a></li>
+                                                    <!-- End Typography -->
+
+                                                    <!-- Components -->
+                                                    <li><a href="shortcode_compo_messages.html"><i class="fa fa-comment"></i> Alerts &amp; Messages</a></li>
+                                                    <li><a href="shortcode_compo_labels.html"><i class="fa fa-tags"></i> Labels &amp; Badges</a></li>
+                                                    <li><a href="shortcode_compo_media.html"><i class="fa fa-volume-down"></i> Audio/Videos &amp; Images</a></li>
+                                                    <li><a href="shortcode_compo_pagination.html"><i class="fa fa-arrows-h"></i> Paginations</a></li>
+                                                    <!-- End Components -->
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 equal-height-in">
+                                                <ul class="list-unstyled equal-height-list">
+                                                    <li><h3>Buttons &amp; Icons</h3></li>
+
+                                                    <!-- Buttons -->
+                                                    <li><a href="shortcode_btn_general.html"><i class="fa fa-flask"></i> General Buttons</a></li>
+                                                    <li><a href="shortcode_btn_brands.html"><i class="fa fa-html5"></i> Brand &amp; Social Buttons</a></li>
+                                                    <li><a href="shortcode_btn_effects.html"><i class="fa fa-bolt"></i> Loading &amp; Hover Effects</a></li>
+                                                    <!-- End Buttons -->
+
+                                                    <!-- Icons -->
+                                                    <li><a href="shortcode_icon_general.html"><i class="fa fa-chevron-circle-right"></i> General Icons</a></li>
+                                                    <li><a href="shortcode_icon_fa.html"><i class="fa fa-chevron-circle-right"></i> Font Awesome Icons</a></li>
+                                                    <li><a href="shortcode_icon_line.html"><i class="fa fa-chevron-circle-right"></i> Line Icons</a></li>
+                                                    <li><a href="shortcode_icon_glyph.html"><i class="fa fa-chevron-circle-right"></i> Glyphicons Icons (Bootstrap)</a></li>
+                                                    <!-- End Icons -->
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 equal-height-in">
+                                                <ul class="list-unstyled equal-height-list">
+                                                    <li><h3>Common elements</h3></li>
+
+                                                    <!-- Common Elements -->
+                                                    <li><a href="shortcode_thumbnails.html"><i class="fa fa-image"></i> Thumbnails</a></li>
+                                                    <li><a href="shortcode_accordion_and_tabs.html"><i class="fa fa-list-ol"></i> Accordion &amp; Tabs</a></li>
+                                                    <li><a href="shortcode_timeline1.html"><i class="fa fa-dot-circle-o"></i> Timeline Option 1</a></li>
+                                                    <li><a href="shortcode_timeline2.html"><i class="fa fa-dot-circle-o"></i> Timeline Option 2</a></li>
+                                                    <li><a href="shortcode_table_general.html"><i class="fa fa-table"></i> Tables</a></li>
+                                                    <li><a href="shortcode_compo_progress_bars.html"><i class="fa fa-align-left"></i> Progress Bars</a></li>
+                                                    <li><a href="shortcode_compo_panels.html"><i class="fa fa-columns"></i> Panels</a></li>
+                                                    <li><a href="shortcode_carousels.html"><i class="fa fa-sliders"></i> Carousel Examples</a></li>
+                                                    <li><a href="shortcode_maps_google.html"><i class="fa fa-map-marker"></i> Google Maps</a></li>
+                                                    <li><a href="shortcode_maps_vector.html"><i class="fa fa-align-center"></i> Vector Maps</a></li>
+                                                    <!-- End Common Elements -->
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-3 equal-height-in">
+                                                <ul class="list-unstyled equal-height-list">
+                                                    <li><h3>Forms &amp; Infographics</h3></li>
+
+                                                    <!-- Forms -->
+                                                    <li><a href="shortcode_form_general.html"><i class="fa fa-bars"></i> Common Bootstrap Forms</a></li>
+                                                    <li><a href="shortcode_form_general1.html"><i class="fa fa-bars"></i> General Unify Forms</a></li>
+                                                    <li><a href="shortcode_form_advanced.html"><i class="fa fa-bars"></i> Advanced Forms</a></li>
+                                                    <li><a href="shortcode_form_layouts.html"><i class="fa fa-bars"></i> Form Layouts</a></li>
+                                                    <li><a href="shortcode_form_layouts_advanced.html"><i class="fa fa-bars"></i> Advanced Layout Forms</a></li>
+                                                    <li><a href="shortcode_form_states.html"><i class="fa fa-bars"></i> Form States</a></li>
+                                                    <li><a href="shortcode_form_sliders.html"><i class="fa fa-bars"></i> Form Sliders</a></li>
+                                                    <li><a href="shortcode_form_modals.html"><i class="fa fa-bars"></i> Modals</a></li>
+                                                    <!-- End Forms -->
+
+                                                    <!-- Infographics -->
+                                                    <li><a href="shortcode_compo_charts.html"><i class="fa fa-pie-chart"></i> Charts &amp; Countdowns</a></li>
+                                                    <!-- End Infographics -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- End Shortcodes -->
+
+                    <!-- Misc Pages -->
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            Misc
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="page_misc_blank.html">Blank page</a></li>
+                            <li><a href="page_misc_boxed.html">Boxed Page</a></li>
+                            <li><a href="page_misc_boxed_img.html">Boxed Image Page</a></li>
+                            <li><a href="page_misc_boxed_fixed_header.html">Boxed Fixed Menu</a></li>
+                            <li><a href="page_misc_dark.html">Dark Page</a></li>
+                            <li><a href="page_misc_dark_boxed.html">Dark Boxed Page</a></li>
+                            <li><a href="page_misc_dark_other_color.html">Dark Page with Theme Color</a></li>
+                            <li><a href="page_misc_sticky_footer.html">Sticky Footer Example</a></li>
+                        </ul>
+                    </li>
+                    <!-- End Misc Pages -->
 
                     <!-- Search Block -->
-                    <li style="margin: 6px;">
-                        <img src="<%=cp%>/res/main/assets/img/search.png" style="width: 24px;">
-                        <input type="text" style="width: 200px; ">
-                    </li>  
+                    <li>
+                        <i class="search fa fa-search search-btn"></i>
+                        <div class="search-open">
+                            <div class="input-group animated fadeInDown">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn-u" type="button">Go</button>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- End Search Block -->
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
     </div>
     <!--=== End Header ===-->
-    
-    <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-        <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
-            <ul class="cd-switcher">
-                <li><a href="javascript:void(0);">Login</a></li>
-                <li><a href="javascript:void(0);">Register</a></li>
+
+    <!--=== Breadcrumbs ===-->
+    <div class="breadcrumbs">
+        <div class="container">
+            <h1 class="pull-left">Login</h1>
+            <ul class="pull-right breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="">Pages</a></li>
+                <li class="active">Login</li>
             </ul>
+        </div><!--/container-->
+    </div><!--/breadcrumbs-->
+    <!--=== End Breadcrumbs ===-->
 
-            <div id="cd-login"> <!-- log in form -->
-                <form class="cd-form">
-                    <p class="social-login">
-                        <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
-                        <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
-                        <span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
-                    </p>
-                    
-                    <div class="lined-text"><span>로그인</span><hr></div>
+    <!--=== Content Part ===-->
+    <div class="container content">
+    	<div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <form class="reg-page">
+                    <div class="reg-header">
+                        <h2>Login to your account</h2>
+                    </div>
 
-                    <p class="fieldset">
-                        <label class="image-replace cd-username" for="signin-userid">UserId</label>
-                        <input class="full-width has-padding has-border" id="signin-userid" type="text" placeholder="UserId">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" placeholder="Username" class="form-control">
+                    </div>
+                    <div class="input-group margin-bottom-20">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" placeholder="Password" class="form-control">
+                    </div>
 
-                    <p class="fieldset">
-                        <label class="image-replace cd-password" for="signin-password">Password</label>
-                        <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
-                        <a href="javascript:void(0);" class="hide-password">Hide</a>
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
+                    <div class="row">
+                        <div class="col-md-6 checkbox">
+                            <label><input type="checkbox"> Stay signed in</label>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn-u pull-right" type="submit">Login</button>
+                        </div>
+                    </div>
 
-                    <p class="fieldset">
-                        <input type="checkbox" id="remember-me" checked>
-                        <label for="remember-me">Remember me</label>
-                    </p>
+                    <hr>
 
-                    <p class="fieldset">
-                        <input class="full-width" type="submit" value="Login">
-                    </p>
+                    <h4>Forget your Password ?</h4>
+                    <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
                 </form>
+            </div>
+        </div><!--/row-->
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
 
-                <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
-                <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
-            </div> <!-- cd-login -->
+     <!--=== Footer Version 1 ===-->
+    <div class="footer-v1">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- About -->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="<%=cp%>/res/main/assets/img/logo2-default.png" alt=""></a>
+                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
+                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>
+                    </div><!--/col-md-3-->
+                    <!-- End About -->
 
-            <div id="cd-signup"> <!-- sign up form -->
-                <form class="cd-form">
-                    <p class="social-login">
-                        <span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>
-                        <span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>
-                        <span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>
-                    </p>
+                    <!-- Latest -->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        <div class="posts">
+                            <div class="headline"><h2>Latest Posts</h2></div>
+                            <ul class="list-unstyled latest-list">
+                                <li>
+                                    <a href="#">Incredible content</a>
+                                    <small>May 8, 2014</small>
+                                </li>
+                                <li>
+                                    <a href="#">Best shoots</a>
+                                    <small>June 23, 2014</small>
+                                </li>
+                                <li>
+                                    <a href="#">New Terms and Conditions</a>
+                                    <small>September 15, 2014</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!--/col-md-3-->
+                    <!-- End Latest -->
 
-                    <div class="lined-text"><span>회원가입</span><hr></div>
-					
-					<p class="fieldset">
-                        <label class="image-replace cd-username" for="signup-userId">UserId</label>
-                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
-                    
-                    <p class="fieldset">
-                        <label class="image-replace cd-username" for="signup-username">Username</label>
-                        <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
+                    <!-- Link List -->
+                    <div class="col-md-3 md-margin-bottom-40">
+                        <div class="headline"><h2>Useful Links</h2></div>
+                        <ul class="list-unstyled link-list">
+                            <li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Portfolio</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Community</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+                        </ul>
+                    </div><!--/col-md-3-->
+                    <!-- End Link List -->
 
-                    <p class="fieldset">
-                        <label class="image-replace cd-password" for="signup-password">Password</label>
-                        <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-                        <a href="javascript:void(0);" class="hide-password">Hide</a>
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
+                    <!-- Address -->
+                    <div class="col-md-3 map-img md-margin-bottom-40">
+                        <div class="headline"><h2>Contact Us</h2></div>
+                        <address class="md-margin-bottom-40">
+                            25, Lorem Lis Street, Orange <br />
+                            California, US <br />
+                            Phone: 800 123 3456 <br />
+                            Fax: 800 123 3456 <br />
+                            Email: <a href="mailto:info@anybiz.com" class="">info@anybiz.com</a>
+                        </address>
+                    </div><!--/col-md-3-->
+                    <!-- End Address -->
+                </div>
+            </div>
+        </div><!--/footer-->
 
-                    <p class="fieldset">
-                        <label class="image-replace cd-password" for="signup-password1">Again Password</label>
-                        <input class="full-width has-padding has-border" id="signup-password1" type="text"  placeholder="Again Password">
-                        <a href="javascript:void(0);" class="hide-password">Hide</a>
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
-                    
-                     <p class="fieldset">
-                        <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                        <input class="full-width has-padding has-border" id="signup-email" type="text"  placeholder="email">         
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
-                    
-                     <p class="fieldset">
-                        <label class="image-replace cd-tel" for="signup-tel">Tel</label>
-                        <input class="full-width has-padding has-border" id="signup-tel" type="text"  placeholder="tel">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            2015 &copy; All Rights Reserved.
+                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                        </p>
+                    </div>
 
-                    <p class="fieldset">
-                        <input type="checkbox" id="accept-terms">
-                        <label for="accept-terms">위의 사항을 확인합니다.</label>
-                    </p>
+                    <!-- Social Links -->
+                    <div class="col-md-6">
+                        <ul class="footer-socials list-inline">
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+                                    <i class="fa fa-skype"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Social Links -->
+                </div>
+            </div>
+        </div><!--/copyright-->
+    </div>
+    <!--=== End Footer Version 1 ===-->
+</div><!--/wrapper-->
 
-                    <p class="fieldset">
-                        <input class="full-width has-padding" type="submit" value="created">
-                    </p>
-                </form>
+<!-- JS Global Compulsory -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/smoothScroll.js"></script>
+<!-- JS Customization -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/app.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        App.init();
+    });
+</script>
+<!--[if lt IE 9]>
+    <script src="<%=cp%>/res/main/assets/plugins/respond.js"></script>
+    <script src="<%=cp%>/res/main/assets/plugins/html5shiv.js"></script>
+    <script src="<%=cp%>/res/main/assets/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->
 
-                <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
-            </div> <!-- cd-signup -->
-
-            <div id="cd-reset-password"> <!-- reset password form -->
-                <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-
-                <form class="cd-form">
-                    <p class="fieldset">
-                        <label class="image-replace cd-email" for="reset-email">E-mail</label>
-                        <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-                        <span class="cd-error-message">Error message here!</span>
-                    </p>
-
-                    <p class="fieldset">
-                        <input class="full-width has-padding" type="submit" value="Reset password">
-                    </p>
-                </form>
-
-                <p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>
-            </div> <!-- cd-reset-password -->
-            <a href="javascript:void(0);" class="cd-close-form">Close</a>
-        </div> <!-- cd-user-modal-container -->
-    </div> <!-- cd-user-modal -->
-</div>
+</body>
+</html>

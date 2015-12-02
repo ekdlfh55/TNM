@@ -36,7 +36,7 @@
 					href="shortcode_typo_boxshadows.html"><i
 						class="fa fa-align-justify"></i> 록/메탈</a></li>
 				<li><a href="shortcode_typo_testimonials.html"><i
-						class="fa fa-align-justify"></i> R&B/Soul</a></li>
+						class="fa fa-align-justify"></i> R＆B/Soul</a></li>
 				<li><a href="shortcode_typo_tagline_boxes.html"><i
 						class="fa fa-align-justify"></i> 랩/힙합</a></li>
 				<li><a href="shortcode_typo_grid.html"><i
@@ -55,7 +55,7 @@
 		<!-- End 장르별 게시판 -->
 
 		<!-- 자유 게시판 -->
-		<li class="list-group-item"><a href="<%=cp%>/table/freeTable.do">자유
+		<li class="list-group-item"><a href="<%=cp%>/table/freeBoard.do">자유
 				게시판</a></li>
 		<!-- End 자유게시판 -->
 
