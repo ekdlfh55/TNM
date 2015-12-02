@@ -103,9 +103,8 @@
 			</div>
 			<!-- End Blog Thumb v4 -->
 
-		<div  class="col-md-9">
+		<div  class="col-md-9" style="height: 80px;">
 			<!-- Form -->
-			<form action="" method="post" id="sky-form3" class="sky-form">
 				<fieldset>
 					<div class="row sky-space-30">
 						<div class="row">
@@ -117,34 +116,36 @@
 						
 						<div class="row">
 							<div class="col-md-3">
-								<div>
-									<img class="rounded-x" style="width: 160px; height: 160px;" src="<%=cp%>/res/main/assets/img/album/album1.jpg"/>	
+								<div align="center">
+									<img class="rounded-x" style="width: 100px; height: 100px;" src="<%=cp%>/res/main/assets/img/album/album1.jpg"/>	
 								</div>
 								<br>
 								
 								<div>
-									<input type="text" name="name" id="name" placeholder="Name"
-										class="form-control bg-color-light">
+									<input type="text" name="name" id="name" placeholder="Name" class="form-control bg-color-light">																		
 								</div>
 							</div>
 							<div class="col-md-6" style="width: 70%">
-								<textarea rows="10" name="content" id="content"
+								<textarea rows="5" name="content" id="content"
 									placeholder="Write comment here ..."
 									class="form-control bg-color-light" style="resize:none;"></textarea>
+								
+								<button style="float: right; margin: 2px;" type="reset" class="btn btn-u-orange">취소</button>
+								<button style="float: right; margin: 2px;"  type="button" class="btn btn-u-warning">확인</button>
 							</div>
 						</div>
 					</div>
 
-					<div align="right">
+					<!-- <div align="right">
 						<button type="button" class="btn btn-u-warning">확인</button>
 						<button type="reset" class="btn btn-u-orange">취소</button>
-					</div>
+					</div> -->
 				</fieldset>
 
-				
-			</form>
-			<!-- End Form -->
 		</div>
+		
+		<div id="listReply" style="width:600px; margin: 0px auto;"></div>
+		
 		</div>
 
 	</div>
