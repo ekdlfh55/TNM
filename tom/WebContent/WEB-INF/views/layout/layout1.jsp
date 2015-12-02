@@ -38,7 +38,9 @@
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/parallax-slider/css/parallax-slider.css">
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
 	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/css/style.css"><!-- 로그인 -->
-	
+	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+    
 	<!-- CSS Page Style -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/page_error4_404.css">
     
