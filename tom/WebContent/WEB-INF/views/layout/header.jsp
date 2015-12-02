@@ -251,19 +251,12 @@ function memberOk() {
                     </li>
                     <!-- End Home -->
 
-                    <!-- Pages -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							커뮤니티
-                        </a>
-                        <ul class="dropdown-menu">
-             				<li><a href="<%=cp%>/table/freeTable.do">게시판</a></li>
-                            <!-- About Pages -->
-                            <li class="dropdown-submenu">
-                                <a href="javascript:void(0);">About Pages</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="page_about2.html">About Us </a></li>
-                                    <li><a href="page_about3.html">About Us 1</a></li>
+                          <!-- Pages -->                     
+                          <li class="dropdown">
+                          <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">커뮤니티</a>
+                          <ul class="dropdown-menu">
+                          <li><a href="<%=cp%>/table/genreBoard.do">장르게시판</a></li>
+                         <li><a href="<%=cp%>/table/freeBoard.do">자유게시판</a></li>
                                     <li><a href="page_about1.html">About Us 2</a></li>
                                     <li><a href="page_about.html">About Us 3</a></li>
                                     <li><a href="page_about_me.html">About Me </a></li>
