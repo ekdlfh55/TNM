@@ -13,15 +13,18 @@
 </insert>
 
 <update id="updateMember1" parameterType="com.sp.member.Member">
-	UPDATE member_basic SET userName=#{userName},userPwd=#{userPwd},enabled=#{enabled},modify_date=SYSDATE
+	UPDATE member_basic SET userName=#{userName},userPwd=#{userPwd},enabled=#{enabled},modify_date=CURRENT_TIMESTAMP
 		WHERE userId=#{userId}
 </update>
 
-<update id="updateMember2" parameterType="com.sp.member.Member">
+<!-- <update id="updateMember2" parameterType="com.sp.member.Member">
 	UPDATE member_detail SET birth=#{birth},email=#{email}, tel=#{tel}, home=#{home},
 		question=#{question},answer=#{answer} WHERE userId=#{userId}
-</update>
+</update> -->
 
+<update id="updateMember2" parameterType="com.sp.member.Member">
+   UPDATE member_detail SET birth=#{birth}, email=#{email}, tel=#{tel}, home=#{home}, genre=#{genre} WHERE userId=#{userId}
+</update>
 
 <select id="readMember" parameterType="String" resultType="com.sp.member.Member">
 	SELECT a.userId,userName,userPwd,enabled,DATE_FORMAT(birth,'%Y-%m-%d')birth,email,tel,created_date,modify_date

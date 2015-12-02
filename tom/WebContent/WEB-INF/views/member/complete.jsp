@@ -53,7 +53,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="error-v4">
                     <a href="#"><img src="<%=cp%>/res/main/assets/img/logo2-default.png" alt=""></a><br>
-                    <font style="font-size: 70pt; color:orange; ">가입완료</font><br>
+                    <font style="font-size: 70pt; color:orange; ">${title }</font><br>
                     <br><Br><br><br><Br><br><br><Br><br><br><Br><br>
                     <span class="welcome" style="font-size:20pt; color: white;"><b>톰앤뮤직에 가입이 되신걸 진심으로 환영합니다.!</b></span>
                     <br><Br><br>

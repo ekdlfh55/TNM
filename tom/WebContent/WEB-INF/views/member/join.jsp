@@ -74,46 +74,25 @@
                     <label>Favourite Genre1(복수선택 가능)</label>
                     <div class="row">   	
                         <div class="col-sm-12" align="center">
-	                        <input type="checkbox" name="check[]" value="1">가요&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="2">POP&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="3">OST&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="4">일렉트로니카&클럽뮤직&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="5">록/메탈&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="6">R&B/Soul&nbsp;&nbsp;&nbsp;<br>
-							<input type="checkbox" name="check[]" value="7">랩/힙합&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="8">인디음악&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="9">트로트&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="10">J-POP&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="11">클래식&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" name="check[]" value="12">재즈&nbsp;&nbsp;&nbsp;		
+                      	    <input type="checkbox" name="genre[]" value="가요">가요&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="pop">POP&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="ost">OST&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="일렉트로니카&클럽뮤직">일렉트로니카&클럽뮤직&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="록/메탈">록/메탈&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="R&B/Soul">R&B/Soul&nbsp;&nbsp;&nbsp;<br>
+							<input type="checkbox" name="genre[]" value="랩/힙합">랩/힙합&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="인디음악">인디음악&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="트로트">트로트&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="J-POP">J-POP&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="클래식">클래식&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" name="genre[]" value="재즈">재즈&nbsp;&nbsp;&nbsp;		
                         </div>                                                  	                        
                     </div>
                     <br>
            	   
                  	<label>Address</label>
-	                 <input type="text" name="home" class="form-control margin-bottom-20" value="${dto.zip}" ${mode=="update" ? "readonly='readonly' style='border:none;' ":""}>	
-                        	<%-- <div class="col-sm-4">
-	                            <select class="form-control margin-bottom-20">
-	 								<option style="width: 70px" value="">선 택</option>
-									<option value="010" ${dto.tel1=="010" ? "selected='selected'" : ""}>010</option>
-									<option value="011" ${dto.tel1=="011" ? "selected='selected'" : ""}>011</option>
-									<option value="016" ${dto.tel1=="016" ? "selected='selected'" : ""}>016</option>
-									<option value="017" ${dto.tel1=="017" ? "selected='selected'" : ""}>017</option>
-									<option value="018" ${dto.tel1=="018" ? "selected='selected'" : ""}>018</option>
-									<option value="019" ${dto.tel1=="019" ? "selected='selected'" : ""}>019</option>
-								</select>
-                        	</div>
-	                        
-	                        <div class="col-sm-4">                      	      
-	                            <input type="text" class="form-control margin-bottom-20">
-	                        </div>
-                     
-	                        <div class="col-sm-4">                      	      
-	                            <input type="text" class="form-control margin-bottom-20">
-	                        </div> --%>
-	                        
-                    
-                    
+	                 <input type="text" name="home" class="form-control margin-bottom-20">	
+             
                     <label>Phone</label>
 	                <div class="row">   	
                         	<div class="col-sm-4">
@@ -327,9 +306,9 @@
 
         var mode="${mode}";
         if(mode=="created") {
-        	f.action = "<%=cp%>/member/join";
+        	f.action = "<%=cp%>/member/join.do";
         } else if(mode=="update") {
-        	f.action = "<%=cp%>/member/update";
+        	f.action = "<%=cp%>/member/update.do";
         }
 
         f.submit();
