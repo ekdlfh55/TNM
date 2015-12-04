@@ -8,7 +8,7 @@
 %>
 
 <script type="text/javascript">
-   function check() {
+   function sendOvo() {
       var f=document.ovoNoticceFrom;
       
       var str=f.subject.value;
@@ -23,6 +23,12 @@
          alert("내용을 입력하세요.");
          f.content.focus();
          return false;
+      }
+      
+      str=f.division.value;
+      if(str=="분류"){
+    	  alert("종류를 선택하세요.");
+    	  return false;
       }
       
       var mode="${mode}";
@@ -50,8 +56,7 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<form action="#" class="sky-form" name="ovoNoticceFrom"
-						onsubmit="return ovoNoticceFrom();">
+					<form action="#" class="sky-form" name="ovoNoticceFrom" onsubmit="return sendOvo();" method="post">
 
 						<fieldset>
 
@@ -63,25 +68,25 @@
 							<section>
 								<label class="label">작성자</label> <label class="input"> <input
 									type="text" readonly="readonly"
-									value="${sessionScope.member.userId}">
+									value="${sessionScope.member.userName}">
 								</label>
 							</section>
 							
 							<section>
-	                            <label class="label">Select</label>
+	                            <label class="label">분류</label>
 	                            <label class="select">
-	                                <select>
-	                                    <option value="0">분류</option>
-	                                    <option value="1">서비스 소식</option>
-	                                    <option value="2">서비스 오픈</option>
-	                                    <option value="3">서비스 종료</option>
-	                                    <option value="4">서비스 점검</option>
-	                                    <option value="5">안내</option>
+	                                <select name="division">
+	                                    <option value="분류">분류</option>
+	                                    <option value="서비스 소식">서비스 소식</option>
+	                                    <option value="서비스 오픈">서비스 오픈</option>
+	                                    <option value="서비스 종료">서비스 종료</option>
+	                                    <option value="서비스 점검">서비스 점검</option>
+	                                    <option value="안내">안내</option>
 	                                </select>
 	                                <i></i>
 	                            </label>
                        		</section>
-
+                       		
 							<section>
 								<label class="label">내 용</label> <label class="textarea">
 									<textarea name="content" rows="7">${dto.content}</textarea>
@@ -91,8 +96,7 @@
 						</fieldset>
 						<div align="center">
 							<footer>
-								<button type="button" class="btn-u"
-									onclick="javascript:location.href='<%=cp%>/notice/service.do';">등록하기</button>
+								<button type="submit" class="btn-u">등록하기</button>
 								<button type="reset" class="btn-u">다시쓰기</button>
 								<button type="button" class="btn-u btn-u-default"
 									onclick="window.history.back();">돌아가기</button>
