@@ -257,7 +257,8 @@ function memberOk() {
 							커뮤니티
                         </a>
                         <ul class="dropdown-menu">
-             				<li><a href="<%=cp%>/table/freeTable.do">게시판</a></li>
+             				<li><a href="<%=cp%>/table/genreBoard.do">장르게시판</a></li>
+                         <li><a href="<%=cp%>/table/freeBoard.do">자유게시판</a></li>
                             <!-- About Pages -->
                             <li class="dropdown-submenu">
                                 <a href="javascript:void(0);">About Pages</a>
