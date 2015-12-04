@@ -15,20 +15,20 @@ public class OvoNoticeServiceImpl implements OvoNoticeService {
 	private CommonDAO dao;
 
 	@Override
-	public int insertOvoNotice(OvoNotice dto, String mode) throws Exception {
+	public int insertOvoNotice(OvoNotice ovonotice, String mode) throws Exception {
 		int result=0;
 		
 		try {
 			int ovoNoticeNum=dao.getIntValue("ovonotice.maxovoNoticeNum")+1;
-			dto.setOvoNoticeNum(ovoNoticeNum);
+			ovonotice.setOvoNoticeNum(ovoNoticeNum);
 			
 			if(mode.equals("created")){
-				dto.setGroupNum(ovoNoticeNum);
-				dto.setOrderNo(0);
-				dto.setDepth(0);
+				ovonotice.setGroupNum(ovoNoticeNum);
+				ovonotice.setOrderNo(0);
+				ovonotice.setDepth(0);
 			}
 			
-			result=dao.insertData("ovonotice.insertOvoNotice", dto);
+			result=dao.insertData("ovonotice.insertOvoNotice", ovonotice);
 			
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -63,11 +63,11 @@ public class OvoNoticeServiceImpl implements OvoNoticeService {
 	public OvoNotice readOvoNotice(int ovoNoticeNum) {
 		OvoNotice ovonotice=null;
 		try {
-			ovonotice=dao.getReadData("ovonotice.readBoard", ovoNoticeNum);
+			ovonotice=dao.getReadData("ovonotice.readOvoNotice", ovoNoticeNum);
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.toString());
 		}
-		return null;
+		return ovonotice;
 	}
 
 	@Override

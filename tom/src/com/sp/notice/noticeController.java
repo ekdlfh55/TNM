@@ -29,14 +29,14 @@ public class noticeController {
 	private MyUtil myUtil;
 	
 	
-	@RequestMapping(value="/notice/service",method=RequestMethod.GET)
+	@RequestMapping(value="/notice/ovo/list",method=RequestMethod.GET)
 	public ModelAndView noticeForm(){
-		ModelAndView mav=new ModelAndView(".notice.service");
+		ModelAndView mav=new ModelAndView(".notice.ovo.list");
 		mav.addObject("title", "고객지원센터");
 		return mav;
 	}
 	
-	@RequestMapping(value="/notice/ovoCreated",method=RequestMethod.GET)
+	@RequestMapping(value="/notice/ovo/created",method=RequestMethod.GET)
 	public ModelAndView ovoCreatedForm(HttpSession session) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -44,15 +44,15 @@ public class noticeController {
 			return new ModelAndView("member/login");
 		}
 		
-		ModelAndView mav=new ModelAndView(".notice.ovoCreated");
+		ModelAndView mav=new ModelAndView(".notice.ovo.created");
 		mav.addObject("mode", "created");
 		mav.addObject("title","1:1질문게시판");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value="/notice/ovoCreated",method=RequestMethod.POST)
-	public String ovoCreatedSubmit(HttpSession session, OvoNotice dto) throws Exception{
+	@RequestMapping(value="/notice/ovo/created",method=RequestMethod.POST)
+	public String ovoCreatedSubmit(HttpSession session, OvoNotice ovonotice) throws Exception{
 	
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -60,13 +60,13 @@ public class noticeController {
 			return "redirect:/member/login";
 		}
 		
-		dto.setUserId(info.getUserId());
-		service.insertOvoNotice(dto, "created");
+		ovonotice.setUserId(info.getUserId());
+		service.insertOvoNotice(ovonotice, "created");
 		
-		return "redirect:/notice/service.do";
+		return "redirect:/notice/ovo/list.do";
 	}
 	
-	@RequestMapping(value="/notice/service")
+	@RequestMapping(value="/notice/ove/list")
 	public ModelAndView list(HttpServletRequest req,@RequestParam(value = "pageNum", defaultValue = "1") int current_page,
 			@RequestParam(value = "searchKey", defaultValue = "subject") String searchKey,@RequestParam(value = "searchValue", defaultValue = "") String searchValue
 			) throws Exception {
@@ -110,8 +110,8 @@ public class noticeController {
 		}
 		
 		String params = "";
-		String urlList = cp + "/notice/service.do";
-		String urlArticle = cp + "/notice/service/article.do?pageNum=" + current_page;
+		String urlList = cp + "/notice/ovo/list.do";
+		String urlArticle = cp + "/notice/ovo/article.do?pageNum=" + current_page;
 		
 		if (searchValue.length() !=0) {
 			params = "searchKey=" + searchKey + "&searchValue=" + URLEncoder.encode(searchValue, "UTF-8");
@@ -122,7 +122,7 @@ public class noticeController {
 			urlArticle += "&" + params;
 		}
 		
-		ModelAndView mav=new ModelAndView(".notice.service");
+		ModelAndView mav=new ModelAndView(".notice.ovo.list");
 		mav.addObject("list", list);
 		mav.addObject("dataCount", dataCount);
 		mav.addObject("pageNum", current_page);

@@ -33,9 +33,9 @@
       
       var mode="${mode}";
       if(mode=="created")
-         f.action="<%=cp%>/notice/ovoCreated.do";
+         f.action="<%=cp%>/notice/ovo/created.do";
          else if(mode=="update")
-            f.action="<%=cp%>/notice/ovoUpdate.do";
+            f.action="<%=cp%>/notice/ovo/update.do";
 
 		return true;
 	}
