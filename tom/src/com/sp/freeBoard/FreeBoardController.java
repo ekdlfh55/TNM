@@ -42,7 +42,7 @@ public class FreeBoardController {
 		   
 		   int numPerPage = 10;
 		   int total_page = 0;
-	      int dataCount;
+		   int dataCount;
 	      
 	      if (req.getMethod().equalsIgnoreCase("GET")) {
 	         searchValue = URLDecoder.decode(searchValue, "UTF-8");

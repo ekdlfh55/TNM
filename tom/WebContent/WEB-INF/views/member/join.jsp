@@ -25,30 +25,30 @@
                 <form class="reg-page" name="joinForm" method="post">
                     <div class="reg-header">
                         <h2>${title}</h2>
-                        <p>Already Signed Up? Click <a href="<%=cp%>/member/login.do" class="color-green">Sign In</a> to login your account.</p>
+                        <p>이미 회원이십니까? <a href="<%=cp%>/member/login.do" class="color-green">여기를 </a> 눌러 로그인 하세요.</p>
                     </div>
 
-                    <label>UserId <span class="color-red">*</span></label>
+                    <label>아이디 <span class="color-red">*</span></label>
                     <input type="text" name="userId" id="userId" onchange="#" class="form-control margin-bottom-20" value="${dto.userId}"${mode=="update" ? "readonly='readonly' style='border:none;'":""}>
 
-                    <label>UserName <span class="color-red">*</span></label>
+                    <label>이름 <span class="color-red">*</span></label>
                     <input type="text" name="userName" class="form-control margin-bottom-20" value="${dto.userName}" ${mode=="update" ? "readonly='readonly' style='border:none;' ":""}>
                     
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>Password <span class="color-red">*</span></label>
+                            <label>패스워드 <span class="color-red">*</span></label>
                             <input type="password" name="userPwd" class="form-control margin-bottom-20">
                         </div>
                         <div class="col-sm-6">
-                            <label>Confirm Password <span class="color-red">*</span></label>
+                            <label>패스워드 확인 <span class="color-red">*</span></label>
                             <input type="password" name="userPwd1" class="form-control margin-bottom-20">
                         </div>
                     </div>
                     
-                    <label>birth</label>
+                    <label>생일</label>
                     <input type="date" name="birth" value="${dto.birth}" class="form-control margin-bottom-20">
                     
-                    <label>Email Address</label>
+                    <label>이메일</label>
                     <div class="row">   	
                         	<div class="col-sm-5">
 	                           <select style="width: 110px" name="selectEmail" class="form-control margin-bottom-20" onchange="changeEmail()">
@@ -71,7 +71,7 @@
 	                        </div>               	                       
                     </div>
                     
-                    <label>Favourite Genre1(복수선택 가능)</label>
+                    <label>좋아하는 음악 장르(복수선택 가능)</label>
                     <div class="row">   	
                         <div class="col-sm-12" align="center">
                       	    <input type="checkbox" name="genre[]" value="가요">가요&nbsp;&nbsp;&nbsp;
@@ -90,10 +90,10 @@
                     </div>
                     <br>
            	   
-                 	<label>Address</label>
+                 	<label>주소</label>
 	                 <input type="text" name="home" class="form-control margin-bottom-20">	
              
-                    <label>Phone</label>
+                    <label>전화번호</label>
 	                <div class="row">   	
                         	<div class="col-sm-4">
 	                            <select name="tel1" class="form-control margin-bottom-20">
@@ -118,8 +118,8 @@
 					
 					
 					
-					<label>Question</label>
-					<div class="row">   	
+					<label>비밀번호 질문</label>
+					<div class="row">    	
                         	<div class="col-sm-7">
 	                            <select name="question" class="form-control margin-bottom-20">
 	 								<option style="width: 70px" value="">원하는 질문을 선택하세요.</option>
@@ -142,30 +142,31 @@
 					
                     <hr>
 
-                    <div class="row">
-                        <div class="col-lg-6 checkbox">
+            
+                        <div class="col-sm-12" align="center">
+                     <!--    <div class="col-lg-6 checkbox">
                             <label>
                                 <input type="checkbox">
                                 I read <a href="page_terms.html" class="color-green">Terms and Conditions</a>
                             </label>
-                        </div>
+                        </div> -->
 					<c:if test="${mode=='created'}">
-                        <div class="col-lg-6 text-right">
-                            <button class="btn-u" type="button" onclick="memberOk();">Register</button>
-                            <button class="btn-u" type="reset">Reset</button>
-                            <button class="btn-u" type="button" onclick="javascript:location.href='<%=cp%>';">cencle</button>
+                        <div class="col-lg-12 ">
+                            <button class="btn btn-warning" type="button" onclick="memberOk();">회원가입</button>
+                            <button class="btn btn-warning" type="reset">다시쓰기</button>
+                            <button class="btn btn-warning" type="button" onclick="javascript:location.href='<%=cp%>';">취소하기</button>
                         </div>
                     </c:if>
                     
                     <c:if test="${mode=='update'}">
-                        <div class="col-lg-6 text-right">
+                        <div class="col-lg-12 ">
                         	<input type="hidden" name="enabled" value="${dto.enabled}">
-                            <button class="btn-u" type="button" onclick="memberOk();">Update</button>
-                            <button class="btn-u" type="reset">Reset</button>
-                            <button class="btn-u" type="button" onclick="javascript:location.href='<%=cp%>';">cencle</button>
+                            <button class="btn btn-warning" type="button" onclick="memberOk();">수정하기</button>
+                            <button class="btn btn-warning" type="reset">다시쓰기</button>
+                            <button class="btn btn-warning" type="button" onclick="javascript:location.href='<%=cp%>';">취소하기</button>
                         </div>
                     </c:if>
-                    
+                   
                     </div>
                 </form>
                 

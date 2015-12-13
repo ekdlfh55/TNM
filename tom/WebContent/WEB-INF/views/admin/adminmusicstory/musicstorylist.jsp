@@ -47,15 +47,15 @@ function searchMusicStory() {
 		</thead>
 		
 		<tbody>
-			<c:forEach var="dto" items="${list}">
-				<tr align="center">
-					<td  width="5%">${dto.listNum}</td>
-					<td  width="15%">${dto.subject}</td>
-					<td align="center" width="15%">${dto.division}</td>
-					<td align="center" width="15%">${dto.created}</td>
-					<td align="center" width="15%"><button class="btn btn-warning btn-xs"><i class="fa fa-trash-o"></i>&nbsp;삭제</button></td>
-				</tr>
-			</c:forEach>
+	<c:forEach var="dto" items="${list}">
+			<tr align="center">
+				<td  width="5%">${dto.listNum}</td>
+				<td  width="15%">${dto.subject}</td>
+				<td align="center" width="15%">${dto.division}</td>
+				<td align="center" width="15%">${dto.created}</td>
+				<td align="center" width="15%"><button class="btn btn-warning btn-xs"><i class="fa fa-trash-o"></i>&nbsp;삭제</button></td>
+			</tr>
+	</c:forEach>
 			
 		</tbody>
 	</table>

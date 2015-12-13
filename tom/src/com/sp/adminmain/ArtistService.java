@@ -7,6 +7,6 @@ public interface ArtistService {
 	public int insertArtist(Artist dto, String path) throws Exception;
 	public int dataCount(Map<String,Object> map);
 	
-	public Artist readMusicStory(int artistnum);
+	public Artist readArtist(int artistNum);
 	public List<Artist> artistlist(Map<String, Object> map);
 }

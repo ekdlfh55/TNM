@@ -8,18 +8,7 @@
 %>
 
 <div class="bodyShare">
-
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs">
-        <div class="container">    
-            <ul class="pull-right breadcrumb">
-                <li><a href="<%=cp%>">main</a></li>
-                <li><a href="<%=cp%>/member/login.do">login</a></li>
-                <li class="active">Share</li>
-            </ul>
-        </div>
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
+<br><br>
 
     <!--=== Content Part ===-->
     <div class="container content">

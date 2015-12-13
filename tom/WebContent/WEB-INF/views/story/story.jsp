@@ -7,45 +7,34 @@
 %>
 <div class="bodyMusic">
 
-	<!--=== Breadcrumbs v1 ===-->
-	<div class="breadcrumbs">
-		<div class="container">
-			
-			<ul class="pull-right breadcrumb">
-				<li><a href="<%=cp%>">Main</a></li>
-				<li><a href="">Features</a></li>
-				<li class="active">MusicStory</li>
-			</ul>
-		</div>
-	</div>
-
+	<br><br>
 	<div class="container">
 		 <div class="headline"><h2>${title }</h2></div>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<td><a style="color: black;" href="<%=cp%>/story/ganreStroy.do">아티스트갤러리</a></td>
-					<td><a style="color: black;" href="#">공감카툰</a></td>
-					<td><a style="color: black;" href="#">릴레이 인터뷰</a></td>
-					<td><a style="color: black;" href="#">금주의 차트</a></td>
+					<td><a href="<%=cp%>/story/artistStroy.do">아티스트갤러리</a></td>
+					<td><a href="<%=cp%>/story/cartoonStroy.do">공감카툰</a></td>
+					<td><a href="<%=cp%>/story/interviewStroy.do">릴레이 인터뷰</a></td>
+					<td><a href="<%=cp%>/story/chatStroy.do">금주의 차트</a></td>
 				</tr>
 				<tr>
-					<td><a style="color: black;" href="#">톡톡 클래식</a></td>
-					<td><a style="color: black;" href="#">Club</a></td>
-					<td><a style="color: black;" href="#">HipHop</a></td>
-					<td><a style="color: black;" href="#">RnB</a></td>
+					<td><a href="<%=cp%>/story/classStroy.do">톡톡 클래식</a></td>
+					<td><a href="<%=cp%>/story/clubStroy.do">Club</a></td>
+					<td><a href="<%=cp%>/story/hiphopStroy.do">HipHop</a></td>
+					<td><a href="<%=cp%>/story/rnbStroy.do">RnB</a></td>
 				</tr>
 				<tr>
-					<td><a style="color: black;" href="#">Edm</a></td>
-					<td><a style="color: black;" href="#">Jazz</a></td>
-					<td><a style="color: black;" href="#">언더커버뮤직</a></td>
-					<td><a style="color: black;" href="#">별님의 선택</a></td>
+					<td><a href="<%=cp%>/story/edmStroy.do">Edm</a></td>
+					<td><a href="<%=cp%>/story/jazzStroy.do">Jazz</a></td>
+					<td><a href="<%=cp%>/story/underStroy.do">언더커버뮤직</a></td>
+					<td><a href="<%=cp%>/story/starStroy.do">별님의 선택</a></td>
 				</tr>
 				<tr>
-					<td><a style="color: black;" href="#">이주의 히든트랙</a></td>
-					<td><a style="color: black;" href="#">라이브세션</a></td>
-					<td><a style="color: black;" href="#">인디차트</a></td>
-					<td><a style="color: black;" href="#">이슈포커스</a></td>
+					<td><a href="<%=cp%>/story/hiddenStroy.do">이주의 히든트랙</a></td>
+					<td><a href="<%=cp%>/story/liveStroy.do">라이브세션</a></td>
+					<td><a href="<%=cp%>/story/indiStroy.do">인디차트</a></td>
+					<td><a href="<%=cp%>/story/issuStroy.do">이슈포커스</a></td>
 				</tr>
 			</tbody>
 		</table>

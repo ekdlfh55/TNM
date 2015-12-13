@@ -29,7 +29,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/footers/footer-v2.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/animate.css">
@@ -43,6 +43,7 @@
     
 	<!-- CSS Page Style -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/page_error4_404.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/blog_magazine.css">
     
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/custom.css">
@@ -71,26 +72,27 @@
 </head>
 
 <body>
-
-	<div class="layoutMain">
 	
-		<div class="layoutHeader">
-			<tiles:insertAttribute name="header"/>
-		</div>
+	<div class="wrapper">
+		<div class="layoutMain">
 		
-		<div class="container">
-			<div class="layoutBody1">
-				<tiles:insertAttribute name="body"/>
+			<div class="layoutHeader">
+				<tiles:insertAttribute name="header"/>
 			</div>
-		</div>
-		
-		<div class="layoutFooter">
-			<tiles:insertAttribute name="footer"/>
-		</div>
-		
-		
-	</div>
+			
+			<div class="container">
+				<div class="layoutBody1">
+					<tiles:insertAttribute name="body"/>
+				</div>
+			</div>
+			
+			<br>
+			<div class="layoutFooter">
+				<tiles:insertAttribute name="footer"/>
+			</div>
 
+		</div>
+	</div>
 <!--[if lt IE 9]>
     <script src="<%=cp%>/res/main/assets/plugins/respond.js"></script>
     <script src="<%=cp%>/res/main/assets/plugins/html5shiv.js"></script>

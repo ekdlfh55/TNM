@@ -75,5 +75,17 @@ public class MusicStoryServiceImpl implements MusicStoryService {
 		
 		return result;
 	}
+	@Override
+	public int updateMusicStory(MusicStory dto) {
+		int result=0;
+		
+		try {
+			dao.updateData("musicstory.updateMusicStory", dto);
+			//result=1;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 
 }

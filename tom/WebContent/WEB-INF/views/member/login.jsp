@@ -47,30 +47,29 @@
     <form  name="loginForm" method="post" action="">
 	    <div class="reg-block">
 	        <div class="reg-block-header">
-	            <h2>Sign In</h2>
+	            <h2>로 그 인 </h2>
 	            <ul class="social-icons text-center">
 	                <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
 	                <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
 	                <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
-	                <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
-	            </ul>
-	            <p>Don't Have Account? Click <a class="color-green" href="<%=cp%>/member/join.do">Sign Up</a> to registration.</p>
+	                </ul>
+	            <p>계정이 없으신가요? <a class="color-green" href="<%=cp%>/member/join.do">여기를</a> 눌러주세요.</p>
 	        </div>
 	
 	        <div class="input-group margin-bottom-20">
 	            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-	            <input type="text" name="userId"  placeholder="Userid" class="form-control">
+	            <input type="text" name="userId"  placeholder="아이디" class="form-control">
 	        </div>
 	        <div class="input-group margin-bottom-20">
 	            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-	            <input type="password" name="userPwd"  class="form-control" placeholder="Password">
+	            <input type="password" name="userPwd"  class="form-control" placeholder="패스워드">
 	        </div>
 	        <hr>
 	
 	        <div class="checkbox">
 	            <label>
 	                <input type="checkbox">
-	                <p>Always stay signed in</p>
+	                <p>아이디를 저장 합니다.</p>
 	            </label>
 	        </div>
 			<div align="center">
@@ -78,7 +77,7 @@
 			</div>
 	        <div class="row">
 	            <div class="col-md-10 col-md-offset-1">
-	                <button type="button" class="btn-u btn-block" onclick="sendLogin();">Log In</button>
+	                <button type="button" class="btn-u btn-block" onclick="sendLogin();">로그인</button>
 	            </div>
 	        </div>
 	    </div>

@@ -43,7 +43,7 @@ label {
 }
 
 a {
-   color: #72c02c;
+   color: #5A6069;
    text-decoration: none;  
 }
 
@@ -57,7 +57,7 @@ a:focus {
   text-decoration: none;
 }
 a:hover {
-   color: #72c02c;
+   color: #E67432;
    text-decoration: underline;
 }
 
@@ -378,7 +378,7 @@ a.thumbnail {
 
 .thumbnail h3 a:hover,
 .thumbnail-style h3 a:hover {
-	color: #72c02c;
+	color: #E67432;
 	text-decoration: none;
 }
 

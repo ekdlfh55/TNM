@@ -13,7 +13,7 @@
 	</update>
 	
 	<select id="dataCount" parameterType="map" resultType="Integer">
-		SELECT COALESCE(COUNT(*), 0) FROM musicstory
+		SELECT ifnull(COUNT(*), 0) FROM musicstory
 	</select>
 	
 	<select id="readMusicStory" parameterType="Integer" resultType="com.sp.adminmain.MusicStory">

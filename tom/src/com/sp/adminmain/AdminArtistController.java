@@ -27,7 +27,7 @@ public class AdminArtistController {
 	private ArtistService service;
 	@Autowired
 	private MyUtil myUtil;
-	
+
 	@RequestMapping(value="/admin/artist")
 	public ModelAndView artist(
 		@RequestParam (defaultValue="list")String active) throws Exception {
@@ -37,7 +37,7 @@ public class AdminArtistController {
 		
 		return mav;
 	}
-	
+	// 가수리스트
 	@RequestMapping(value="admin/artist/artistlist")
 	public ModelAndView artistList(HttpServletRequest req,
 			@RequestParam(value="pageNo", defaultValue="1") int current_page,
@@ -99,7 +99,7 @@ public class AdminArtistController {
 		
 		return mav;
 	}
-	
+	// 가수 추가 폼
 	@RequestMapping(value="/admin/artist/artistcreatedform",method=RequestMethod.POST)
 	public ModelAndView artistCreatedForm(HttpSession session) throws Exception{
 		
@@ -114,6 +114,7 @@ public class AdminArtistController {
 	      
 	      return mav;
 	}
+	// 가수 추가
 	@RequestMapping(value="/admin/artistcreated", method=RequestMethod.POST)
 	public String artistCreatedSubmit(HttpSession session, Artist dto) throws Exception {
 		String root=session.getServletContext().getRealPath("/");

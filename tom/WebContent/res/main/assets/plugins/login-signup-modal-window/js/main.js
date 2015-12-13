@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
 
   //IE9 placeholder fallback
   //credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
-  if (!Modernizr.input.placeholder) {
+  /*if (!Modernizr.input.placeholder) {
     $('[placeholder]').focus(function() {
       var input = $(this);
       if (input.val() == input.attr('placeholder')) {
@@ -124,7 +124,7 @@ jQuery(document).ready(function($) {
         }
       })
     });
-  }
+  }*/
 
 });
 

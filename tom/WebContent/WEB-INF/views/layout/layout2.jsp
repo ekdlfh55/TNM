@@ -29,7 +29,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/headers/header-default.css">
-    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/footers/footer-v1.css">
+    <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/footers/footer-v2.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/animate.css">
@@ -76,6 +76,7 @@
 		<div class="layoutHeader">
 			<tiles:insertAttribute name="header"/>
 		</div>
+		
 		<div class="container">	
 			<div class="layoutBody2">
 			    <div class="layoutBodyLeft">
@@ -86,7 +87,9 @@
 			    </div>
 			</div>
 		</div>
+		
 		<br><br><br><br>
+		
 		<div class="layoutFooter">
 			<tiles:insertAttribute name="footer"/>
 		</div>

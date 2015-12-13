@@ -8,17 +8,7 @@
 %>
 <div class="bodychat">
 
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs">
-        <div class="container">  
-            <ul class="pull-right breadcrumb">
-                <li><a href="<%=cp%>">Main</a></li>
-                <li><a href="">Features</a></li>
-                <li class="active">톰 차트</li>
-            </ul>
-        </div>
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
+   <br><br>
 
     <!--=== Content Part ===-->
     <div class="container content">

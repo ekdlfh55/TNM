@@ -15,7 +15,7 @@ public class AdminAccountController {
 		
 		return mav;
 	}
-	
+	// 결제리스트
 	@RequestMapping(value="admin/account/accountlist")
 	public ModelAndView accountList() throws Exception {
 		ModelAndView mav=new ModelAndView("admin/adminaccount/accountlist");

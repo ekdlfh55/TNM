@@ -5,15 +5,7 @@
 <%
 	String cp = request.getContextPath();
 %>
-<div class="breadcrumbs">
-	<div class="container">
-		<ul class="pull-right breadcrumb">
-			<li><a href="<%=cp%>">main</a></li>
-			<li><a href="">Features</a></li>
-			<li class="active">아티스트</li>
-		</ul>
-	</div>
-</div>
+<br><br>
 <!--Left Sidebar-->
 <div class="col-md-3 md-margin-bottom-40">
 	<img class="img-responsive profile-img margin-bottom-20"

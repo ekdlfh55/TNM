@@ -61,8 +61,20 @@ function searchartist() {
 					</tr>
 				</c:forEach>
 			</tbody>
-	
+		</table>
 		<div class="panel-footer">
-		
+		<table>
+			<tr align="center" height="15">
+			
+					<c:if test="${dataCount==0}">
+						등록된 게시물이 없다
+					</c:if> 
+					
+					<c:if test="${dataCount!=0}">
+						${pageIndexList}   
+					</c:if>				
+				
+			</tr>
+		</table>
 		</div>
 	</div>

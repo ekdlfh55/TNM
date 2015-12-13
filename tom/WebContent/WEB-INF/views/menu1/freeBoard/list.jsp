@@ -50,6 +50,7 @@ function searchList() {
                             </tr>
                         </thead>
                         <tbody>
+                        
                         <c:forEach var="dto" items="${list}">
                             <tr>
                                 <td>${dto.listNum}</td>
@@ -58,7 +59,7 @@ function searchList() {
                                 <td>${dto.created}</td>
                                 <td>${dto.hitCount}</td>
                             </tr>                            
-                            </c:forEach>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

@@ -6,65 +6,69 @@
 	String cp=request.getContextPath();
 %>
 <div id="footer">
-<!--=== Footer Version 1 ===-->
-    <div class="footer-v1">
+   <!--=== Footer v2 ===-->
+    <div id="footer-v2" class="footer-v2">
         <div class="footer">
             <div class="container">
-                <div class="row">
-                    <!-- About -->
-                    <div class="col-md-3 md-margin-bottom-40">
-                        <a href="index.html"><img id="logo-footer" class="footer-logo" src="<%=cp%>/res/main/assets/img/logo2-default.png" alt=""></a>
-                        <p>About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.</p>
-                        <p>Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.</p>
-                    </div><!--/col-md-3-->
-                    <!-- End About -->
-
-                    <!-- Latest -->
-                    <div class="col-md-3 md-margin-bottom-40">
-                        <div class="posts">
-                            <div class="headline"><h2>Latest Posts</h2></div>
-                            <ul class="list-unstyled latest-list">
-                                <li>
-                                    <a href="#">Incredible content</a>
-                                    <small>May 8, 2014</small>
-                                </li>
-                                <li>
-                                    <a href="#">Best shoots</a>
-                                    <small>June 23, 2014</small>
-                                </li>
-                                <li>
-                                    <a href="#">New Terms and Conditions</a>
-                                    <small>September 15, 2014</small>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!--/col-md-3-->
-                    <!-- End Latest -->
-
-                    <!-- Link List -->
-                    <div class="col-md-3 md-margin-bottom-40">
-                        <div class="headline"><h2>Useful Links</h2></div>
+                <div align="center" class="row">
+                  <!-- Link List -->
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="headline"><h6 class="heading-sm">약관</h6></div>
                         <ul class="list-unstyled link-list">
-                            <li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">Portfolio</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">Community</a><i class="fa fa-angle-right"></i></li>
-                            <li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">회사소개</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">이용약관</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">개인정보취급방침</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">청소년보호정책</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">제휴/프로모션문의</a><i class="fa fa-angle-right"></i></li>
                         </ul>
-                    </div><!--/col-md-3-->
+                    </div>
                     <!-- End Link List -->
 
+                    <!-- Latest Tweets -->
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="latest-tweets">
+                            <div class="headline"><h6 class="heading-sm">Latest Tweets</h6></div>
+                            <div class="latest-tweets-inner">
+                                <i class="fa fa-twitter"></i>
+                                <p>
+                                    <a href="#">@htmlstream</a>
+                                    At vero seos etodela ccusamus et
+                                    <a href="#">http://t.co/sBav7dm</a>
+                                    <small class="twitter-time">2 hours ago</small>
+                                </p>
+                            </div>
+                            <div class="latest-tweets-inner">
+                                <i class="fa fa-twitter"></i>
+                                <p>
+                                    <a href="#">@htmlstream</a>
+                                    At vero seos etodela ccusamus et
+                                    <a href="#">http://t.co/sBav7dm</a>
+                                    <small class="twitter-time">4 hours ago</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Latest Tweets -->
+
                     <!-- Address -->
-                    <div class="col-md-3 map-img md-margin-bottom-40">
-                        <div class="headline"><h2>Contact Us</h2></div>
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="headline"><h6 class="heading-sm">만든사람</h6></div>
                         <address class="md-margin-bottom-40">
-                            25, Lorem Lis Street, Orange <br />
-                            California, US <br />
-                            Phone: 800 123 3456 <br />
-                            Fax: 800 123 3456 <br />
-                            Email: <a href="mailto:info@anybiz.com" class="">info@anybiz.com</a>
+                            <i class="fa fa-home"></i>25, Lorem Lis Street, California, US <br />
+                            <i class="fa fa-phone"></i>Phone: 800 123 3456 <br />
+                            <i class="fa fa-globe"></i>Website: <a href="#">www.htmlstream.com</a> <br />
+                            <i class="fa fa-envelope"></i>Email: <a href="mailto:info@anybiz.com">info@anybiz.com</a>
                         </address>
-                    </div><!--/col-md-3-->
+
+                        <!-- Social Links -->
+                        <ul class="social-icons">
+                            <li><a href="#" data-original-title="Facebook" class="rounded-x social_facebook"></a></li>
+                            <li><a href="#" data-original-title="Twitter" class="rounded-x social_twitter"></a></li>
+                            <li><a href="#" data-original-title="Goole Plus" class="rounded-x social_googleplus"></a></li>
+                            <li><a href="#" data-original-title="Linkedin" class="rounded-x social_linkedin"></a></li>
+                        </ul>
+                        <!-- End Social Links -->
+                    </div>
                     <!-- End Address -->
                 </div>
             </div>
@@ -72,57 +76,9 @@
 
         <div class="copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>
-                            2015 &copy; All Rights Reserved.
-                           <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-                        </p>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="col-md-6">
-                        <ul class="footer-socials list-inline">
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
-                                    <i class="fa fa-skype"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-                                    <i class="fa fa-pinterest"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Social Links -->
-                </div>
+                <p class="text-center">2015 &copy; final project tom&music <a target="_blank" href=#">coperation</a></p>
             </div>
         </div><!--/copyright-->
     </div>
+    <!--=== End Footer v2 ===-->
  </div>

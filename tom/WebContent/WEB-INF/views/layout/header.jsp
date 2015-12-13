@@ -92,44 +92,64 @@ function memberOk() {
 
 
 </script>
+
 <div id="header">
  <!--=== Header ===-->
     <div class="header">
+    <!-- Topbar -->
+                 <!-- Topbar -->
+          
+        <div class="topbar-v1"  style="background: #fdfdfd; border-bottom: solid 1px #f0f0f0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="padding-left: 40px; margin-top: 5px; ">
+                     	<ul class="list-inline top-v1-contacts">
+                            <li>
+                                <i class="fa fa-envelope"></i> 이메일: <a href="mailto:info@htmlstream.com">4joZZang@naver.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-phone"></i> 전화번호: (02)2666-6666
+                            </li>
+                        </ul> 
+                    </div>
+
+                    <div class="col-md-6" >
+                        <ul class="list-inline top-v1-data" style="float: right; padding-right: 10px; margin-top: 5px;" >
+                            <c:choose>
+	                            <c:when test="${empty sessionScope.member}">  
+		                            <li><a href="<%=cp%>"><i class="fa fa-home"></i>홈으로 </a></li>
+		                            <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>
+		                            <li><a href="<%=cp%>/member/join.do"> 회원가입</a></li>
+		                            <li><a href="<%=cp%>/customer/main.do">고객센터</a></li>
+		                        </c:when>
+								
+								                         
+		                        
+		                        <c:otherwise>
+	                    			<li><font>${sessionScope.member.userName}</font>님</li>
+	                            	<li><a href="<%=cp%>/member/pwd.do?mode=update"> 정보수정</a></li>
+	                            	<li><a href="<%=cp%>/member/logout.do">로그아웃</a></li>                       
+	                            </c:otherwise>
+                            </c:choose>
+                            
+                            <c:if test="${sessionScope.member.userId=='admin'}">	
+								<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
+							</c:if>
+	
+                        </ul>
+                    </div>
+                </div>        
+            </div>
+        </div>
+        <!-- End Topbar -->
         <div class="container">
             <!-- Logo -->
             <a class="logo" href="<%=cp%>">
-                <img style="width: 200px;" src="<%=cp%>/res/main/assets/img/logo.png" alt="Logo">
+                <img style="width: 130px; height:55px; margin:15px;" src="<%=cp%>/res/main/assets/img/Logo.jpg" alt="Logo">
             </a>
             <!-- End Logo -->
 
-            <!-- Topbar -->
-            <div class="topbar">
-                <ul class="loginbar pull-right">
-                	<c:choose>
-						<c:when test="${empty sessionScope.member}">                    
-		                    <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>          
-		                    <li class="topbar-devider"></li>
-		                    <li><a href="<%=cp%>/member/join.do">회원가입</a></li>
-                    	</c:when>
-                    	
-                    	<c:otherwise>
-                    			<li><font>${sessionScope.member.userName}</font>님</li>
-								&nbsp;|&nbsp;
-								<li><a href="<%=cp%>/member/logout.do">로그아웃</a></li>
-								&nbsp;|&nbsp;
-								<li><a href="<%=cp%>/member/pwd.do?mode=update">정보수정</a></li>
-						</c:otherwise>
-					</c:choose>
-                    <li class="topbar-devider"></li>
-                    <li><a href="<%=cp%>/customer/main.do">고객센터</a></li>
-                 
-                    <c:if test="${sessionScope.member.userId=='admin'}">
-                    	<li class="topbar-devider"></li>
-						<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
-					</c:if>
-                </ul>
-            </div>
-            <!-- End Topbar -->
+            
 
             <!-- Toggle get grouped for better mobile display -->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -141,53 +161,51 @@ function memberOk() {
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
-            <div class="container" style="width: 60%">
+            <div class="container" align="center">
                 <ul class="nav navbar-nav">
-                    <!-- Home -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							뮤직
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<%=cp%>/music/chat.do">톰차트</a></li>
-							<li><a href="<%=cp%>/share/share.do">톰DJ</a></li>                      
-                        </ul>
-                    </li>
-                    <!-- End Home -->
-
-                    <!-- Pages -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							커뮤니티
-                        </a>
-                        <ul class="dropdown-menu">
-             			 	<li><a href="<%=cp%>/genre/list.do">장르게시판</a></li>
-             				<li><a href="<%=cp%>/freeBoard/list.do">자유게시판</a></li>
-	                    </ul>
-                    </li>
-                    <!-- End Pages -->
-
-                    <!-- 뮤직스토리 -->
-                    <li><a href="<%=cp%>/story/story.do">뮤직스토리 </a></li>
-                    <!-- 뮤직스토리 -->
-
-                    <!-- Portfolio -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							 마이앨범
-                        </a>
-                        <ul class="dropdown-menu">              
-                            <li><a href="<%=cp%>/myalbum/mypage.do">마이페이지</a> </li>                                         
-                        </ul>
-                    </li>
-                    <!-- End Portfolio -->
-
-
-                    <!-- Search Block -->
-                    <li style="margin: 6px;">
-                        <img src="<%=cp%>/res/main/assets/img/search.png" style="width: 24px;">
-                        <input type="text" style="width: 200px; ">
-                    </li>  
+                 	<!-- 톰앤뮤직 -->
+	                    <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								톰앤뮤직
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="<%=cp%>/music/chat.do">톰차트</a></li>
+								<li><a href="<%=cp%>/share/share.do">톰DJ</a></li>                      
+	                        </ul>
+	                    </li>
+	                    <!-- 톰앤뮤직 -->
+	
+	                    <!-- 커뮤니티 -->
+	                    <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								톰커뮤니티
+	                        </a>
+	                        <ul class="dropdown-menu">
+	             			 	<li><a href="<%=cp%>/genre/gayolist.do">장르게시판</a></li>
+	             				<li><a href="<%=cp%>/freeBoard/list.do">자유게시판</a></li>
+		                    </ul>
+	                    </li>
+	                   <!-- 커뮤니티 -->
+	
+	                    <!-- 뮤직스토리 -->
+	                    <li><a href="<%=cp%>/story/story.do">뮤직스토리 </a></li>
+	                    <!-- 뮤직스토리 -->
+	
+	                    <!-- 마이탭 -->
+	                    <li class="dropdown">
+	                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								 마이탭
+	                        </a>
+	                        <ul class="dropdown-menu">              
+	                            <li><a href="<%=cp%>/myalbum/mypage.do">마이앨범</a></li>
+	                            <li><a href="<%=cp%>/myalbum/mypage.do">마이페이지</a></li>                                      
+	                        </ul>
+	                    </li>
+                  		<!-- 마이탭 -->
+                  		
+                  		<!--  -->
+	                     <li><a href="<%=cp%>/event/event.do">이벤트 </a></li>
+                  		<!-- 마이탭 -->
                 </ul>
             </div><!--/end container-->
         </div><!--/navbar-collapse-->
@@ -197,8 +215,8 @@ function memberOk() {
     <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
         <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
             <ul class="cd-switcher">
-                <li><a href="javascript:void(0);">Login</a></li>
-                <li><a href="javascript:void(0);">Register</a></li>
+                <li><a href="javascript:void(0);">로그인</a></li>
+                <li><a href="javascript:void(0);">회원가입</a></li>
             </ul>
 
             <div id="cd-login"> <!-- log in form -->
@@ -212,27 +230,27 @@ function memberOk() {
                     <div class="lined-text"><span>로그인</span><hr></div>
 
                     <p class="fieldset">
-                        <label class="image-replace cd-username" for="signin-userid">UserId</label>
-                        <input class="full-width has-padding has-border" id="signin-userid"  name="userId" type="text" placeholder="UserId">                     
+                        <label class="image-replace cd-username" for="signin-userid">아이디</label>
+                        <input class="full-width has-padding has-border" id="signin-userid"  name="userId" type="text" placeholder="아이디">                     
                     </p>
 
                     <p class="fieldset">
-                        <label class="image-replace cd-password" for="signin-password">Password</label>
-                        <input class="full-width has-padding has-border" id="signin-password" type="text" name="userPwd"  placeholder="Password">
-                        <a href="javascript:void(0);" class="hide-password">Hide</a>                      
+                        <label class="image-replace cd-password" for="signin-password">비밀번호</label>
+                        <input class="full-width has-padding has-border" id="signin-password" type="text" name="userPwd"  placeholder="비밀번호">
+                        <a href="javascript:void(0);" class="hide-password">숨기기</a>                      
                     </p>
 
                     <p class="fieldset">
                         <input type="checkbox" id="remember-me" checked>
-                        <label for="remember-me">Remember me</label>
+                        <label for="remember-me">아이디를 저장합니다.</label>
                     </p>
 
                     <p class="fieldset">
-                        <input class="full-width has-padding" type="button" value="Login" onclick="sendLogin();">
+                        <input class="full-width has-padding" type="button" value="로그인" onclick="sendLogin();">
                     </p>
                 </form>
 
-                <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
+                <p class="cd-form-bottom-message"><a href="javascript:void(0);">비밀번호를 잊어버렸습니까?</a></p>
                 <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
             </div> <!-- cd-login -->
 
@@ -248,23 +266,23 @@ function memberOk() {
 					
 					<p class="fieldset">
                         <label class="image-replace cd-username" for="signup-userId">UserId</label>
-                        <input class="full-width has-padding has-border" id="signup-username"  name="userId" type="text" placeholder="UserId">         
+                        <input class="full-width has-padding has-border" id="signup-username"  name="userId" type="text" placeholder="아이디">         
                     </p>
                     
                     <p class="fieldset">
                         <label class="image-replace cd-username" for="signup-username">Username</label>
-                        <input class="full-width has-padding has-border" id="signup-username" name="userName" type="text" placeholder="Username">         
+                        <input class="full-width has-padding has-border" id="signup-username" name="userName" type="text" placeholder="이름">         
                     </p>
 
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="signup-password">Password</label>
-                        <input class="full-width has-padding has-border" id="signup-password" type="text" name="userPwd"  placeholder="Password">
+                        <input class="full-width has-padding has-border" id="signup-password" type="text" name="userPwd"  placeholder="패스워드">
                         <a href="javascript:void(0);" class="hide-password">Hide</a>              
                     </p>
 
                     <p class="fieldset">
                         <label class="image-replace cd-password" for="signup-password1">Again Password</label>
-                        <input class="full-width has-padding has-border" id="signup-password1" name="userPwd1" type="text"  placeholder="Again Password">
+                        <input class="full-width has-padding has-border" id="signup-password1" name="userPwd1" type="text"  placeholder="패스워드확인">
                         <a href="javascript:void(0);" class="hide-password">Hide</a>
                     </p>
 
@@ -274,7 +292,7 @@ function memberOk() {
                     </p>
 
                     <p class="fieldset">
-                        <input class="full-width has-padding" type="button" value="created" onclick="memberOk();">
+                        <input class="full-width has-padding" type="button" value="가입하기" onclick="memberOk();">
                     </p>
                 </form>
 
@@ -282,7 +300,7 @@ function memberOk() {
             </div> <!-- cd-signup -->
 
             <div id="cd-reset-password"> <!-- reset password form -->
-                <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+                <p class="cd-form-message">비밀번호를 잊어버렸습니까? 당신의 이메일 주소를 입력해 주세요. 새로운 비밀번호를 만들 수 있는 링크를 받을 수 있습니다.</p>
 
                 <form class="cd-form">
                     <p class="fieldset">

@@ -24,31 +24,36 @@
             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                 <form name="pwdForm" method="post" class="reg-page">
                     <div class="reg-header">
-                        <h2> 정보보호를 위해 패스워드를 다시 한 번 입력해주세요.</h2>
+                        <h3> 정보보호를 위해 패스워드를 다시 한 번 입력해주세요.</h3>
                     </div>
-
+	
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" name="userId"  placeholder="Username" class="form-control">
+                        <input type="text" name="userId"  value="${sessionScope.member.userId}" readonly="readonly" class="form-control">
                     </div>
+                   
                     <div class="input-group margin-bottom-20">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" name="userPwd" placeholder="Password" class="form-control">
+                        <input type="password" name="userPwd" placeholder="패스워드" class="form-control">
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 checkbox">
+                       <!--  <div class="col-md-6 checkbox">
                             <label><input type="checkbox"> Stay signed in</label>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn-u pull-right" type="button"  onclick="sendOk();">Login</button>
-                        </div>
+                        </div> -->
+                      
+                        <div align="center">
+	                    		
+								<button class="btn btn-warning" type="button"  onclick="sendOk();">확 인</button>
+					     		  <button type="submit" class="btn btn-warning" onclick="window.history.back();">돌아가기</button>
+                      					
+						</div>
                     </div>
 
                     <hr>
 
-                    <h4>Forget your Password ?</h4>
-                    <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+                    <h4>패스워드를 잊어버렸습니까? ?</h4>
+                    <p>걱정마세요, <a class="color-green" href="#">여기를 클릭하시고</a>당신의 패스워드를 다시 만드세요!</p>
                 </form>
                 
             </div>

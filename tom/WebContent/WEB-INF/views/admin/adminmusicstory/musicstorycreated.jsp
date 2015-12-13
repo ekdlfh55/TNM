@@ -34,7 +34,7 @@ function storycheck() {
     if(mode=="created")
         f.action = "<%=cp%>/admin/musicstorycreated.do";
     else if(mode=="update")
-        f.action = "<%=cp%>/notice/update.do";
+        f.action = "<%=cp%>/notice/musicstoryupdate.do";
 
 		return true;
 	}

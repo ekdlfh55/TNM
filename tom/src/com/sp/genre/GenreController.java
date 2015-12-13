@@ -31,7 +31,8 @@ public class GenreController {
 	
 	@Autowired
 	private MyUtil myUtil;
-
+	
+/*----------------------------------- 글쓰기 -----------------------------------------*/
 	@RequestMapping(value="/genre/created", method=RequestMethod.GET)
 	public ModelAndView createdForm(HttpSession session) throws Exception{
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -55,9 +56,9 @@ public class GenreController {
 		
 		return new ModelAndView("redirect:/genre/list");
 	}
-
-	@RequestMapping(value="/genre/list")
-	public ModelAndView list(HttpServletRequest req,
+/*----------------------------------- 가요 리스트  -----------------------------------------*/
+	@RequestMapping(value="/genre/gayolist")
+	public ModelAndView gayolist(HttpServletRequest req,
 			@RequestParam(value="pageNum", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
@@ -102,7 +103,7 @@ public class GenreController {
 		}
 				
 		String params = "";
-		String urlList= cp+"/genre/list.do";
+		String urlList= cp+"/genre/gayolist.do";
 		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
 	
 		 if(!searchValue.equals("")) {
@@ -111,7 +112,7 @@ public class GenreController {
 	        }
 	        
         if(params.length()!=0) {
-            urlList = cp+"/genre/list.do?" + params;
+            urlList = cp+"/genre/gayolist.do?" + params;
             urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
         }
 		
@@ -126,9 +127,9 @@ public class GenreController {
 		return mav;	
 	}
 	
-
+/*----------------------------------- 글보기 -----------------------------------------*/
 	@RequestMapping(value="/genre/article")
-	public ModelAndView article(
+	public ModelAndView gayoarticle(
 			HttpSession session,
 			@RequestParam(value="num") int num,
 			@RequestParam(value="pageNum") String pageNum,
@@ -177,9 +178,11 @@ public class GenreController {
 		
         return mav;
 	}
+
 	
+/*----------------------------------- 수정 -----------------------------------------*/	
 	@RequestMapping(value="/genre/update",method=RequestMethod.GET)
-	public ModelAndView updateForm(
+	public ModelAndView gayoupdateForm(
 			HttpSession session,
 			@RequestParam(value="num") int num,
 			@RequestParam(value="pageNum") String pageNum
@@ -203,9 +206,9 @@ public class GenreController {
 		return mav;
 		
 	}
-	
+		
 	@RequestMapping(value="/genre/update",method=RequestMethod.POST)
-	public ModelAndView updateSubmit(
+	public ModelAndView gayoupdateSubmit(
 			HttpSession session,
 			Genre dto,
 			@RequestParam(value="pageNum") String pageNum
@@ -228,9 +231,10 @@ public class GenreController {
 		return new ModelAndView("redirect:/genre/article.do?num="+dto.getNum()+"&pageNum"+pageNum);
 		*/
 	}
-	
+
+/*----------------------------------- 삭제 -----------------------------------------*/
 	@RequestMapping(value="/genre/delete")
-	public String delete(
+	public String gayodelete(
 			HttpSession session,
 			@RequestParam int num,
 			@RequestParam String pageNum
@@ -244,7 +248,12 @@ public class GenreController {
 			
 			return "redirect:/genre/list.do?pageNum="+pageNum;
 	}
+
+
+/*----------------------------------- 리플 -----------------------------------------*/
 	
+	
+/*----------------------------------- 리플쓰기 -----------------------------------------*/	
 	@RequestMapping(value="/genre/insertGenreReply", method=RequestMethod.POST)
 	public void insertGenreReply(
 			HttpServletResponse resp,
@@ -270,6 +279,7 @@ public class GenreController {
 	
 	}
 	
+/*----------------------------------- 리플 리스트 -----------------------------------------*/	
 	@RequestMapping(value="/genre/listReply")
 	public ModelAndView listReply(
 			@RequestParam(value="num") int num,
@@ -311,6 +321,8 @@ public class GenreController {
 		return mav;
 	}
 	
+	
+/*----------------------------------- 리플삭제 -----------------------------------------*/	
 	@RequestMapping(value="/genre/deleteReply", method=RequestMethod.POST)
 	public void deleteReply(
 			HttpServletResponse resp,
@@ -335,11 +347,866 @@ public class GenreController {
 		out.print(job.toString());
 	}
 	
+/*----------------------------------- 팝 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/poplist")
+	public ModelAndView poplist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/poplist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/poplist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","POP게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}
+	
+/*----------------------------------- ost리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/ostlist")
+	public ModelAndView ostlist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/ostlist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/ostlist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","OST게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}
 	
 	
+/*----------------------------------- 일렉 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/eleclist")
+	public ModelAndView eleclist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/eleclist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/eleclist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","일렉게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}
+	
+/*----------------------------------- 락 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/rocklist")
+	public ModelAndView rocklist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/rocklist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/rocklist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","록게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}		
+
+/*----------------------------------- 알앤비 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/rblist")
+	public ModelAndView rblist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/rblist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/rblist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","알앤비게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}	
+	
+	
+/*----------------------------------- 랩 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/raplist")
+	public ModelAndView raplist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/raplist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/raplist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","랩게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}	
+	
+	
+/*----------------------------------- 인디 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/indilist")
+	public ModelAndView indilist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/indilist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/indilist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","인디게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}	
+	
+	
+/*----------------------------------- 트로트 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/trotlist")
+	public ModelAndView trotlist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/trotlist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/trotlist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","트로트게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}
 	
 
+/*----------------------------------- 제이팝 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/jpoplist")
+	public ModelAndView jpoplist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/jpoplist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
 	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/jpoplist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","제이팝게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}	
+	
+	
+	
+/*----------------------------------- 클래식 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/classiclist")
+	public ModelAndView classiclist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/classiclist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/classiclist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","클래식게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}	
+	
+	
+	
+/*----------------------------------- 재즈 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/jazzlist")
+	public ModelAndView jazzlist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/jazzlist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/jazzlist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","재즈게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}
+	
+	/*----------------------------------- 기타 리스트 -----------------------------------------*/	
+	@RequestMapping(value="/genre/ectlist")
+	public ModelAndView ectlist(HttpServletRequest req,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue
+			)throws Exception{
+		String cp = req.getContextPath();
+
+		int numPerPage = 10;
+		int total_page =0;
+		int dataCount;
+		
+		if (req.getMethod().equalsIgnoreCase("GET")) {
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+
+		dataCount = service.dataCount(map);
+		if(dataCount !=0)
+			total_page = myUtil.getPageCount(numPerPage, dataCount);
+		
+		if(total_page < current_page)
+			current_page = total_page;
+
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;  // 주의
+
+		map.put("start", start);
+		
+		
+		List<Genre> list = service.listGenreBoard(map);
+		
+		// 글번호 만들기
+		int listNum, n = 0;
+		Iterator<Genre> it = list.iterator();
+		while (it.hasNext()) {
+			Genre data = it.next();
+			listNum = dataCount - (start+n);
+			data.setListNum(listNum);
+			n++;
+		}
+				
+		String params = "";
+		String urlList= cp+"/genre/ectlist.do";
+		String urlArticle= cp+"/genre/article.do?pageNum=" +current_page;
+	
+		 if(!searchValue.equals("")) {
+	        	params = "searchKey=" +searchKey + 
+	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+	        }
+	        
+        if(params.length()!=0) {
+            urlList = cp+"/genre/ectlist.do?" + params;
+            urlArticle = cp+"/genre/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".four.menu1.genre.list");
+		mav.addObject("title","기타게시판");
+		mav.addObject("list",list);
+		mav.addObject("dataCount",dataCount);
+		mav.addObject("pageNum", current_page);
+		mav.addObject("urlArticle", urlArticle);
+		mav.addObject("pageIndexList",
+				myUtil.pageIndexList(current_page, total_page, urlList));
+		return mav;	
+	}		
 }
 
 

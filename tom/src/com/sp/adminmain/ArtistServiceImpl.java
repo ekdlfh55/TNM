@@ -45,11 +45,11 @@ public class ArtistServiceImpl implements ArtistService {
 	}
 
 	@Override
-	public Artist readMusicStory(int artistnum) {
+	public Artist readArtist(int artistNum) {
 		Artist dto=null;
 		
 		try {
-			dto=dao.getReadData("artist.readArtist", artistnum);
+			dto=dao.getReadData("artist.readArtist", artistNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

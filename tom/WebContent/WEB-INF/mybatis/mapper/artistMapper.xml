@@ -14,9 +14,9 @@
 
 
 <select id="artistlist" parameterType="map" resultType="com.sp.adminmain.Artist">
-		SELECT artistnum, artistName,a.userId, birth, date, sosoksa, type
-         FROM artist a JOIN member_basic m ON a.userId=m.userId
-         ORDER BY artistnum desc LIMIT #{start}, 10;
+		SELECT artistNum, type, artistName, DATE_FORMAT(date,'%Y-%m-%d')date, DATE_FORMAT(birth,'%Y-%m-%d')birth, sosoksa
+         FROM artist
+         ORDER BY artistNum ASC LIMIT #{start}, 10;
 </select>
 
 </mapper>
