@@ -37,15 +37,35 @@
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/parallax-slider/css/parallax-slider.css">
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/css/style.css"><!-- 로그인 -->
+ 	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/css/style.css"><!-- 로그인 --> 
 	<link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css"><!-- 관리자 폼 -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 	
 	<link rel="stylesheet" href="<%=cp%>/res/main/assets/css/pages/shortcode_timeline1.css"><!-- 타임라인 -->
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/custom.css">
+    
+    
+    <!-- JS Global Compulsory -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/modernizr.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+
+<script src="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
+<!-- JS Customization -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/app.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/owl-carousel.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/parallax-slider.js"></script>
   
-   
+ 
 </head>
 
 <body>
@@ -73,24 +93,7 @@
 
 	</div>
 
-<!-- JS Global Compulsory -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
 
-<script src="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
-<!-- JS Customization -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/custom.js"></script>
-<!-- JS Page Level -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/app.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/parallax-slider.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
       	App.init();

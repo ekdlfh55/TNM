@@ -1,5 +1,8 @@
 package com.sp.member;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +99,28 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println(e.toString());
 		}
 		return dto;
+	}
+
+	@Override
+	public int dataCount(Map<String, Object> map) {
+		int result=0;
+		try {
+			result=dao.getIntValue("member.dataCount",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Member> listMember(Map<String, Object> map) {
+		List<Member> list =null;
+		try {
+			list=dao.getListData("member.listMember",map);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return list;
 	}
 
 }

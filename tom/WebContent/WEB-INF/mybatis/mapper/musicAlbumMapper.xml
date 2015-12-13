@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="musicAlbum">
+
+<insert id="insertMusicAlbum" parameterType="com.sp.adminmain.MusicAlbum">
+	INSERT INTO musicAlbum(userId,artistName, subject, content, agency, photo) VALUES(
+		#{userId}, #{artistName}, #{subject}, #{content}, #{agency}, #{photo})
+</insert>
+
+<!-- <select id="dataCount" resultType="Integer" parameterType="map">
+	SELECT ifnull(COUNT(*),0) FROM artist a JOIN member_basic b ON a.userId=b.userId;
+</select>
+ -->
+
+<!-- <select id="listOvoNotice" parameterType="map" resultType="com.sp.customer.ovonotice.OvoNotice">
+		SELECT num, o.userId, subject, DATE_FORMAT(created,'%Y-%m-%d')created, hitCount
+         FROM ovonotice o JOIN member_basic m ON o.userId=m.userId
+         ORDER BY num DESC LIMIT 0, 10;
+</select>  -->
+
+</mapper>

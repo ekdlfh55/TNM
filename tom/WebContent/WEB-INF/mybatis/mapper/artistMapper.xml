@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="artist">
+
+<insert id="insertArtist" parameterType="com.sp.adminmain.Artist">
+	INSERT INTO Artist(userId,artistName,date, type, birth, sosang, sosoksa, imageFilename) VALUES(
+		#{userId}, #{artistName}, #{date}, #{type}, #{birth}, #{sosang}, #{sosoksa}, #{imageFilename})
+</insert>
+
+<select id="dataCount" resultType="Integer" parameterType="map">
+	SELECT ifnull(COUNT(*),0) FROM artist a JOIN member_basic b ON a.userId=b.userId;
+</select>
+
+
+<select id="artistlist" parameterType="map" resultType="com.sp.adminmain.Artist">
+		SELECT artistnum, artistName,a.userId, birth, date, sosoksa, type
+         FROM artist a JOIN member_basic m ON a.userId=m.userId
+         ORDER BY artistnum desc LIMIT #{start}, 10;
+</select>
+
+</mapper>

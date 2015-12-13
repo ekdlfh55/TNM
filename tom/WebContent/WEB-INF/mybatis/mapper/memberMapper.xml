@@ -30,4 +30,14 @@
 	SELECT a.userId,userName,userPwd,enabled,DATE_FORMAT(birth,'%Y-%m-%d')birth,email,tel,created_date,modify_date
 		FROM member_basic a JOIN member_detail b ON a.userId=b.userId WHERE a.userId=#{userId}
 </select>
+
+<select id="dataCount" parameterType="map" resultType="Integer">
+	SELECT COALESCE(COUNT(*),0) FROM member_basic b JOIN member_detail c ON b.userId=c.userId
+</select>
+
+<select id="listMember" parameterType="map" resultType="com.sp.member.Member">
+	SELECT a.userId,userName,birth,email,tel,DATE_FORMAT(created_date,'%Y-%m-%d')created_date FROM member_basic a JOIN member_detail b ON a.userId=b.userId
+		ORDER BY userid asc LIMIT #{start}, 10;
+</select>
+
 </mapper>

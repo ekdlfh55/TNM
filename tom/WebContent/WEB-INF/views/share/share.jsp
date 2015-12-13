@@ -93,7 +93,7 @@
             <!-- Right Sidebar -->
         	<div class="col-md-3">
         	
-        		<button class="btn btn-warning">DJ 신청하기</button>
+        		<button type="button" class="btn btn-warning" onclick="javascript:location.href='<%=cp%>/share/created.do';">DJ 신청하기</button>
                 <!-- Social Icons -->
                 <div class="magazine-sb-social margin-bottom-30">
                    <div class="headline"><h2>Music Story</h2><a href="<%=cp%>/story/story.do">&nbsp;&nbsp;&nbsp;&nbsp;더보기+</a></div>

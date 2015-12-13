@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="musicstory">
+
+	<insert id="insertMusicStory" parameterType="com.sp.adminmain.MusicStory">
+		INSERT INTO musicstory(userId, division, subject,subcontent, content, imageFilename) VALUES(
+			#{userId}, #{division}, #{subject},#{subcontent},#{content}, #{imageFilename})
+	</insert>
+	
+	<update id="updatehitCount" parameterType="Integer">
+		UPDATE musicstory SET hitCount=hitCount+1 WHERE num=#{num}
+	</update>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT COALESCE(COUNT(*), 0) FROM musicstory
+	</select>
+	
+	<select id="readMusicStory" parameterType="Integer" resultType="com.sp.adminmain.MusicStory">
+		SELECT num,userId,subject,subcontent,division,content,DATE_FORMAT(created,'%Y-%m-%d')created,imageFilename FROM musicstory
+			WHERE num=#{num}
+	</select>
+	
+	<select id="listMusicStory" parameterType="map" resultType="com.sp.adminmain.MusicStory">
+		SELECT num,userId,subject,subcontent,division,content,DATE_FORMAT(created,'%Y-%m-%d')created,imageFilename FROM musicstory
+		ORDER BY num DESC LIMIT #{start}, 10;
+	</select>
+
+</mapper>

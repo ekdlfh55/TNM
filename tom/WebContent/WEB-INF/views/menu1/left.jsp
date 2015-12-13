@@ -22,7 +22,7 @@
 		<li class="list-group-item list-toggle"><a data-toggle="collapse"
 			data-parent="#sidebar-nav" href="#collapse-janre">장르별 게시판</a>
 			<ul id="collapse-janre" class="collapse">
-				<li><a href="shortcode_typo_general.html"><i
+				<li><a href="<%=cp%>/genre/list.do"><i
 						class="fa fa-align-justify"></i> 가요</a></li>
 				<li><span class="badge badge-u">New</span> <a
 					href="shortcode_typo_headings.html"><i

@@ -52,26 +52,30 @@
 		<hr>
 		   <!-- 오늘의 스토리 -->
                 <div><h3>오늘의 스토리</h3></div>               
-	              <hr> 
+	              <hr>
+	              
+	              <c:forEach var="dto" items="${list}"> 
 	                <div>
 	                    <div>
 		                  <div id="collapse-One" class="panel-collapse collapse in">
 	                            <div class="panel-body">
 	                                <div class="row">	                                	
 	                                    <div class="col-md-3">
-	                                        <img class="img-responsive" src="<%=cp%>/res/main/assets/img/main/img12.jpg" alt="">
+	                                         <img style="width: 150px; height: 150px;" class="img-responsive" src="<%=cp%>/uploads/photo/${dto.imageFilename}" alt="">
 	                                    </div>
-	                                    <div class="col-md-7">
-	                                        <a href="#"><font>제목</font></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;날자
-	                                    </div>
-	                                     <div class="col-md-7">내용</div>	
+	                                    <div class="col-md-7" align="center">
+	                                       <font style="font-size: 16pt;"> <a style="color: black;" href="#">[${dto.division}]</a></font>  <a href="${urlArticle}&num=${dto.num}"><font style="font-size: 14pt;">${dto.subject }</font></a>
+	                                    </div><br>
+	                                  	 <div align="right" class="col-md-7">  ${dto.created }</div>
+	                                  	 <br>
+	                                     <div align="center" class="col-md-7">${dto.subcontent }</div>	
 	                                     <div class="col-md-2"> 
 		                                     <i class="icon-custom rounded-x icon-color-grey fa fa-heart"></i>
 			                           		<span>좋아요수</span><br> 
 			                           		 <i class="icon-custom rounded-x icon-color-grey fa fa-comments-o"></i>
 			                           		<span>댓글수</span> <br>
 			                           		 <i class="icon-custom rounded-x icon-color-grey fa fa-hand-o-up"></i>
-			                           		<span>조회수</span>
+			                           		<span>${dto.hitCount }</span>
 		                           		</div>                                    
 		                           </div>
 		                                                                  
@@ -79,6 +83,7 @@
 	                        </div>     
 	                    </div>                
 	                </div>
+	               </c:forEach>
 	                <hr>       	                
 			<!-- 오늘의 스토리 -->
 			

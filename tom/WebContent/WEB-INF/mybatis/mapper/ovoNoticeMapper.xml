@@ -3,23 +3,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ovonotice">
 
+
 <select id="maxovoNoticeNum" resultType="Integer">
-	SELECT IFNULL(Max(num),0) FROM ovoNotice
+	SELECT IFNULL(Max(OvoNoticenum),0) FROM ovoNotice
 </select>
 
-<insert id="insertOvoNotice" parameterType="com.sp.notice.OvoNotice">
-	INSERT INTO OvoNotice(userId,division,subject,content,groupNum, orderNo, depth) VALUES(
+<insert id="insertOvoNotice" parameterType="com.sp.customer.ovonotice.OvoNotice">
+	INSERT INTO OvoNotice(userId, division, subject, content, groupNum, orderNo, depth) VALUES(
 		#{userId}, #{division}, #{subject}, #{content}, #{groupNum}, #{orderNo}, #{depth})
 </insert>
 
 <select id="dataCount" resultType="Integer" parameterType="map">
-	SELECT ifnull(COUNT(*),0) FROM ovoNotice a JOIN member_basic b ON a.userId=b.userId;
+	SELECT ifnull(COUNT(*),0) FROM ovoNotice a JOIN member_basic b ON a.userId=b.userId
 </select>
 
-<select id="listOvoNotice" parameterType="map" resultType="com.sp.notice.OvoNotice">
-		SELECT num, o.userId, subject, DATE_FORMAT(created,'%Y-%m-%d')created, hitCount
-         FROM ovonotice o JOIN member_basic m ON o.userId=m.userId
-         ORDER BY num DESC LIMIT 0, 10;
+<select id="readOvoNotice" parameterType="Integer" resultType="com.sp.customer.ovonotice.OvoNotice">
+	SELECT OvoNoticenum,subject,content, o.userId,userName,groupNum, depth, orderNo,hitCount, created
+		FROM ovonotice o JOIN member_basic m ON o.userId=m.userId WHERE ovoNoticeNum= #{ovoNoticeNum}
 </select>
-	
+
+<select id="listOvoNotice" parameterType="map" resultType="com.sp.customer.ovonotice.OvoNotice">
+		SELECT  OvoNoticenum, division, o.userId, userName, subject, DATE_FORMAT(created,'%Y-%m-%d')created, hitCount
+         FROM ovonotice o JOIN member_basic m ON o.userId=m.userId
+        
+         ORDER BY OvoNoticenum DESC LIMIT #{start}, 10
+</select>
+
+<update id="updateHitCount" parameterType="Integer">
+	UPDATE ovonotice SET hitCount= hitCount+1
+		WHERE ovoNoticeNum= #{ovoNoticeNum}
+</update>
+
 </mapper>

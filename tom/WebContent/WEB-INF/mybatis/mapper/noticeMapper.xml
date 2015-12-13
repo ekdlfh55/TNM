@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	<insert id="insertNotice" parameterType="com.sp.customer.notice.Notice">
+		INSERT INTO notice(userId, subject, content, selected,genre)
+		VALUES
+		(#{userId} , #{subject}, #{content}, #{selected},#{genre})
+	</insert>
+	
+	<sql id="where-list">
+		<if test="searchKey=='userName' ">
+			userName=#{searchValue}
+		</if>
+		<if test="searchKey=='subject' ">
+			subject LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey=='content' ">
+			DBMS_LOB.INSTR( content, #{searchValue}) &gt; 0
+		</if>
+		<if test="searchKey=='created' ">
+			DATE_FORMAT(created, '%Y-%m-%d') = #{searchValue}
+		</if>
+	</sql>
+	
+	<select id="listNoticeTop" resultType="com.sp.customer.notice.Notice">
+		SELECT num, selected, n.userId, userName, subject,genre
+		hitCount,
+		created
+		FROM notice n
+		JOIN member_basic m ON n.userId=m.userId
+		WHERE selected = 1
+		ORDER BY num DESC
+	</select>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT
+		ifnull(COUNT(*),0) FROM notice
+	</select>
+	
+	<!-- 리스트 -->
+	<select id="listNotice" parameterType="map" resultType="com.sp.customer.notice.Notice">
+		
+		
+		SELECT num, selected, n.userId, userName, subject, hitCount,
+		DATE_FORMAT(created,'%Y-%m-%d')created,genre
+		FROM notice n  JOIN member_basic m ON n.userId=m.userId 
+		ORDER BY num DESC LIMIT #{start},10
+
+	</select>
+	
+	<!-- 글보기 -->
+	<select id="readNotice" resultType="com.sp.customer.notice.Notice"
+		parameterType="Integer">
+		SELECT num, n.userId, userName, subject, content, created, selected,genre
+		FROM notice n JOIN member_basic m ON n.userId=m.userId
+		WHERE num = #{num}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHitCount" parameterType="Integer">
+		UPDATE notice SET hitCount=hitCount+1 WHERE num = #{num}
+	</update>
+
+	<!-- 수정 -->
+	<update id="updateNotice" parameterType="com.sp.customer.notice.Notice">
+		UPDATE notice SET userId=#{userId}, subject=#{subject},
+		content=#{content}, selected=#{selected},genre=#{genre}
+		WHERE num=#{num}
+	</update>
+	
+		<!-- 삭제 -->
+	<delete id="deleteNotice" parameterType="Integer"> DELETE FROM notice 
+		WHERE num=#{num} </delete> 
+
+
+</mapper>

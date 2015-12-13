@@ -2,9 +2,14 @@ package com.sp.freeBoard;
 
 public class FreeBoard {
 	private int num, hitCount, listNum;
-	private String userId, subject, content, created;
-	
-	
+	private String userId,division, subject, content, created;
+
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
 	public int getNum() {
 		return num;
 	}

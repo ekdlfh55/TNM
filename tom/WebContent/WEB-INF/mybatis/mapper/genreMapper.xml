@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="genre">
+	<insert id="insertGenre" parameterType="com.sp.genre.Genre">
+		INSERT INTO genreBoard(userId, subject, content) VALUES (#{userId}, #{subject}, #{content})
+	</insert>
+	
+<sql id="where-list">
+	    <if test="searchKey == 'userId'  ">
+	    	g.userId = #{searchValue}
+	    </if>
+	    <if test="searchKey == 'subject'  ">
+	    	<!-- INSTR(subject, #{searchValue}) &gt; 0  -->
+	    	 subject LIKE CONCAT('%', #{searchValue}, '%')
+	    </if>
+	    <if test="searchKey == 'content'  ">
+	    	<!-- DBMS_LOB.INSTR(content, #{searchValue}) &gt; 0  -->
+	    	 INSTR(content, #{searchValue}) &gt; 0
+	    </if>
+	  <!--   <if test="searchKey == 'created'  ">
+	    	TO_CHAR(created, 'YYYY-MM-DD') = #{searchValue}
+	    </if> -->
+	</sql>
+	
+	<!-- 글개수 -->
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT COALESCE(COUNT(*),0) FROM genreBoard g
+		JOIN member_basic m ON g.userId=m.userId
+		<where>
+			<if test="searchValue!=null and searchValue!=''">
+				<include refid="where-list"/>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 글리스트 -->
+	<select id="listGenreBoard" parameterType="map" resultType="com.sp.genre.Genre">
+			 SELECT num, g.userId, subject
+            ,DATE_FORMAT(created,'%Y-%m-%d')created
+            ,hitCount
+            FROM genreBoard g JOIN member_basic m ON g.userId=m.userId
+              <where>
+				<if test="searchValue!=null and searchValue!=''">
+					<include refid="where-list"/>
+				</if>
+			  </where>
+              ORDER BY num DESC LIMIT #{start}, 10;
+	</select>
+	
+	<select id="readGenre" parameterType="Integer" resultType="com.sp.genre.Genre">
+ 		 SELECT num, subject, content, g.userId, 
+         hitCount, DATE_FORMAT(created,'%Y-%m-%d')created
+         FROM genreBoard g
+         JOIN member_basic m ON g.userId = m.userId
+         WHERE num=#{num}
+    </select>
+    
+	<update id="updateHitCount" parameterType="Integer">
+       UPDATE genreBoard SET hitCount=hitCount+1
+       WHERE num=#{num}
+    </update>
+	
+	<update id="updateGenre" parameterType="com.sp.genre.Genre">
+		UPDATE genreBoard SET subject=#{subject}, content=#{content}
+		WHERE num=#{num}			
+	</update>
+	
+	
+	<delete id="deleteGenre">
+		DELETE FROM genreBoard WHERE num=#{num}
+	</delete>
+
+
+	<!--  댓글.................   -->
+	<insert id="insertGenreReply" parameterType="com.sp.genre.GenreReply">
+		INSERT INTO genreReply(num, userId, content, answer)
+		VALUES (#{num}, #{userId}, #{content}, #{answer})
+	</insert>
+	
+	
+	<!-- 게시물의 num에 해당하는 데이터 개수 -->
+	<select id="dataCountReply" parameterType="map" resultType="Integer">
+		SELECT COALESCE(COUNT(*),0) FROM genreReply
+		WHERE num=#{num} AND answer=0
+	</select>
+	
+	<!-- 게시물의 num에 해당하는 리스트 -->
+	<select id="listReply" parameterType="map" resultType="com.sp.genre.GenreReply">
+
+		SELECT replyNum, num, g.userId, content, answer, created
+		FROM genreReply g
+		JOIN member_basic m ON g.userId = m.userId
+		WHERE num = #{num} AND answer=0
+		ORDER BY replyNum DESC LIMIT #{start}, 5;
+
+	</select>
+	
+	<delete id="deleteReply" parameterType="Integer">
+		DELETE FROM genreReply WHERE replyNum=#{replyNum}
+	</delete>
+</mapper>

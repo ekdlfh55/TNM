@@ -304,7 +304,7 @@
 						<h2>톰DJ</h2>
 						<a href="<%=cp%>/story/story.do"></a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-warning">DJ 신청하기</button>
+						<button type="button" class="btn btn-warning" onclick="javascript:location.href='<%=cp%>/share/created.do';">DJ 신청하기</button>
 					</div>
 
 					<div>

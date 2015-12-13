@@ -48,6 +48,26 @@
     <link rel="stylesheet" href="<%=cp%>/res/main/assets/css/custom.css">
     
     <script type="text/javascript" src="<%=cp%>/res/main/assets/js/util.js"></script><!-- 회원가입 폼 -->
+    
+    <!-- JS Global Compulsory -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/smoothScroll.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/modernizr.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+
+<script src="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery --> 
+<!-- JS Customization -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/app.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/owl-carousel.js"></script>
+<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/parallax-slider.js"></script>
+
+
 </head>
 
 <body>
@@ -71,36 +91,6 @@
 		
 	</div>
 
-
-<!-- JS Global Compulsory -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- JS Implementing Plugins -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/smoothScroll.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-
-<script src="<%=cp%>/res/main/assets/plugins/login-signup-modal-window/js/main.js"></script> <!-- Gem jQuery -->
-<!-- JS Customization -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/custom.js"></script>
-<!-- JS Page Level -->
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/app.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/owl-carousel.js"></script>
-<script type="text/javascript" src="<%=cp%>/res/main/assets/js/plugins/parallax-slider.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-      	App.init();
-        OwlCarousel.initOwlCarousel();
-        ParallaxSlider.initParallaxSlider();
-    });
-    
-    $.backstretch([
-        "<%=cp%>/res/main/assets/img/background/background.jpg"
-    ]);
-</script>
 <!--[if lt IE 9]>
     <script src="<%=cp%>/res/main/assets/plugins/respond.js"></script>
     <script src="<%=cp%>/res/main/assets/plugins/html5shiv.js"></script>
