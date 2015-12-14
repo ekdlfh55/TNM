@@ -25,10 +25,15 @@ $(function(){
 
 function listPage(page) {
 	var url;
+	var num="${num}";
+	if(num=="") num="0";
+	var pageNo="${pageNo}";
+	if(pageNo=="") pageNo="1";
+	
 	if(active=="list")
 	    url="<%=cp%>/admin/musicstory/musicstorylist.do";
 	else if(active=="created")
-	    url="<%=cp%>/admin/musicstory/musicstorycreatedform.do";
+	    url="<%=cp%>/admin/musicstory/musicstorycreatedform.do?num="+num+"&pageNo="+pageNo;
 	var params="pageNo="+page;
 	$.ajax({
 		type:"post"

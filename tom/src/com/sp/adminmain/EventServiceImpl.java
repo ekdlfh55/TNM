@@ -37,19 +37,20 @@ public class EventServiceImpl implements EventService{
 		int result=0;
 		
 		try {
-			result=dao.getIntValue("event.dataCount", map);
+			result=dao.getIntValue("event.dataCount",map);
 		} catch (Exception e) {
-			System.out.println();
+			System.out.println(e.toString());
 		}
+		
 		return result;
 	}
 
 	@Override
-	public Event readEvent(int eventNum) {
+	public Event readEvent(int eventnum) {
 		Event dto=null;
 		
 		try {
-			dto=dao.getReadData("event.readEvent", eventNum);
+			dto=dao.getReadData("event.readEvent",eventnum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -57,15 +58,26 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public List<Event> eventlist(Map<String, Object> map) {
+	public List<Event> listEvent(Map<String, Object> map) {
 		List<Event> list=null;
+		
 		try {
-			list=dao.getListData("event.eventlist", map);
+			list=dao.getListData("event.listEvent",map);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 		return list;
 	}
 
-	
+	@Override
+	public int updateEvent(Event dto) {
+		int result=0;
+		try {
+			dao.updateData("event.updateEvent", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
 }

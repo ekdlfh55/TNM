@@ -77,9 +77,9 @@ function eventcheck() {
 					<section>
 						<label class="label">종류</label> <label class="select"> 
 						<select name="division">
-								<option value="0">공연</option>
-								<option value="1">연극</option>
-								<option value="2">이용권</option>
+								<option value="공연">공연</option>
+								<option value="연극">연극</option>
+								<option value="이용권">이용권</option>
 						</select> <i></i>
 						</label>
 					</section>

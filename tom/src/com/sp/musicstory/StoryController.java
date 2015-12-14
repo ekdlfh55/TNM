@@ -1,4 +1,4 @@
-package com.sp.story;
+package com.sp.musicstory;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,9 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sp.adminmain.MusicStory;
 import com.sp.adminmain.MusicStoryService;
 import com.sp.common.MyUtil;
-import com.sp.member.SessionInfo;
 
-@Controller("story.storyController")
+@Controller("musicstory.storyController")
 public class StoryController {
 	
 	@Autowired
@@ -30,7 +28,7 @@ public class StoryController {
 	@Autowired
 	private MyUtil myUtil;
 	
-	@RequestMapping(value="story/story",method=RequestMethod.GET)
+	@RequestMapping(value="musicstory/story",method=RequestMethod.GET)
 	public ModelAndView StoryForm(HttpServletRequest req,
 			@RequestParam(value="pageNo", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
@@ -74,15 +72,20 @@ public class StoryController {
 		}
 		
 		String params = "";
-		String urlList= cp+"/story/story.do";
-		String urlArticle= cp+"/story/article.do?pageNo=" + current_page;
+		String urlList= cp+"/musicstory/story.do";
+		String urlArticle= cp+"/musicstory/article.do?pageNo=" + current_page;
 		
 		if(!searchValue.equals("")) {
         	params = "searchKey=" +searchKey + 
         	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
         }
 			
-		ModelAndView mav=new ModelAndView(".story.story");
+		if(params.length()!=0) {
+            urlList = cp+"/musicstory/musicstorylist.do?" + params;
+            urlArticle = cp+"/musicstory/article.do?pageNo=" + current_page + "&"+ params;
+        }
+		
+		ModelAndView mav=new ModelAndView(".musicstory.story");
 		
 		mav.addObject("title","¿Â∏£∫∞");
 		mav.addObject("list",list);
@@ -93,7 +96,7 @@ public class StoryController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/story/article")
+	/*@RequestMapping(value="/story/article")
 	public ModelAndView article(
 			HttpSession session,
 			@RequestParam(value="num") int num,
@@ -121,5 +124,5 @@ public class StoryController {
 		mav.addObject("pageNo", pageNo);
 		
 		return mav;
-	}
+	}*/
 }

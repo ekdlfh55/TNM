@@ -13,28 +13,28 @@
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
-					<td><a href="<%=cp%>/story/artistStroy.do">아티스트갤러리</a></td>
-					<td><a href="<%=cp%>/story/cartoonStroy.do">공감카툰</a></td>
-					<td><a href="<%=cp%>/story/interviewStroy.do">릴레이 인터뷰</a></td>
-					<td><a href="<%=cp%>/story/chatStroy.do">금주의 차트</a></td>
+					<td><a href="<%=cp%>/musicstory/artistStroy.do">아티스트갤러리</a></td>
+					<td><a href="<%=cp%>/musicstory/cartoonStroy.do">공감카툰</a></td>
+					<td><a href="<%=cp%>/musicstory/interviewStroy.do">릴레이 인터뷰</a></td>
+					<td><a href="<%=cp%>/musicstory/chatStroy.do">금주의 차트</a></td>
 				</tr>
 				<tr>
-					<td><a href="<%=cp%>/story/classStroy.do">톡톡 클래식</a></td>
-					<td><a href="<%=cp%>/story/clubStroy.do">Club</a></td>
-					<td><a href="<%=cp%>/story/hiphopStroy.do">HipHop</a></td>
-					<td><a href="<%=cp%>/story/rnbStroy.do">RnB</a></td>
+					<td><a href="<%=cp%>/musicstory/classStroy.do">톡톡 클래식</a></td>
+					<td><a href="<%=cp%>/musicstory/clubStroy.do">Club</a></td>
+					<td><a href="<%=cp%>/musicstory/hiphopStroy.do">HipHop</a></td>
+					<td><a href="<%=cp%>/musicstory/rnbStroy.do">RnB</a></td>
 				</tr>
 				<tr>
-					<td><a href="<%=cp%>/story/edmStroy.do">Edm</a></td>
-					<td><a href="<%=cp%>/story/jazzStroy.do">Jazz</a></td>
-					<td><a href="<%=cp%>/story/underStroy.do">언더커버뮤직</a></td>
-					<td><a href="<%=cp%>/story/starStroy.do">별님의 선택</a></td>
+					<td><a href="<%=cp%>/musicstory/edmStroy.do">Edm</a></td>
+					<td><a href="<%=cp%>/musicstory/jazzStroy.do">Jazz</a></td>
+					<td><a href="<%=cp%>/musicstory/underStroy.do">언더커버뮤직</a></td>
+					<td><a href="<%=cp%>/musicstory/starStroy.do">별님의 선택</a></td>
 				</tr>
 				<tr>
-					<td><a href="<%=cp%>/story/hiddenStroy.do">이주의 히든트랙</a></td>
-					<td><a href="<%=cp%>/story/liveStroy.do">라이브세션</a></td>
-					<td><a href="<%=cp%>/story/indiStroy.do">인디차트</a></td>
-					<td><a href="<%=cp%>/story/issuStroy.do">이슈포커스</a></td>
+					<td><a href="<%=cp%>/musicstory/hiddenStroy.do">이주의 히든트랙</a></td>
+					<td><a href="<%=cp%>/musicstory/liveStroy.do">라이브세션</a></td>
+					<td><a href="<%=cp%>/musicstory/indiStroy.do">인디차트</a></td>
+					<td><a href="<%=cp%>/musicstory/issuStroy.do">이슈포커스</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -73,7 +73,22 @@
 	                    </div>                
 	                </div>
 	               </c:forEach>
-	                <hr>       	                
+	                <hr>
+	                 <div align="center">
+						<table>
+							<tr  height="15">
+								<td >
+								<c:if test="${dataCount==0}">
+			                   등록된 게시물이 없습니다.
+			           </c:if>
+			           <c:if test="${dataCount!=0 }">
+			               ${pageIndexList}
+			           </c:if>
+								</td>
+							</tr>
+						</table>        
+					</div>
+	                <hr>           
 			<!-- 오늘의 스토리 -->
 			
 			<div><h3>인기 연제</h3></div> 

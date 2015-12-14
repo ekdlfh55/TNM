@@ -26,4 +26,8 @@
 		ORDER BY num DESC LIMIT #{start}, 10;
 	</select>
 
+	<update id="updateMusicStory" parameterType="com.sp.adminmain.MusicStory" >
+		UPDATE musicstory SET subject=#{subject}, subcontent=#{subcontent}, division=#{division}, content=#{content}, imageFilename=#{imageFilename} 
+		WHERE num=#{num}
+	</update>
 </mapper>

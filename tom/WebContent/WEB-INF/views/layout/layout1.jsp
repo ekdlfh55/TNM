@@ -79,13 +79,11 @@
 			<div class="layoutHeader">
 				<tiles:insertAttribute name="header"/>
 			</div>
-			
-			<div class="container">
-				<div class="layoutBody1">
-					<tiles:insertAttribute name="body"/>
-				</div>
+		
+			<div class="layoutBody1">
+				<tiles:insertAttribute name="body"/>
 			</div>
-			
+	
 			<br>
 			<div class="layoutFooter">
 				<tiles:insertAttribute name="footer"/>

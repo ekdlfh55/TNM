@@ -23,8 +23,10 @@ import com.sp.member.SessionInfo;
 
 @Controller("adminmain.adminEventController")
 public class AdminEventController {
+	
 	@Autowired
 	private EventService service;
+	
 	@Autowired
 	private MyUtil myUtil;
 	// 이벤트 메인
@@ -40,14 +42,14 @@ public class AdminEventController {
 	// 이벤트 리스트
 	@RequestMapping(value="admin/event/eventlist")
 	public ModelAndView eventList(HttpServletRequest req,
-			@RequestParam(value="pageNo", defaultValue="1") int current_page,
-			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue) throws Exception {
-		
-		String cp = req. getContextPath();
+			 @RequestParam(value="pageNo", defaultValue="1") int current_page,
+			 @RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+	         @RequestParam(value="searchValue", defaultValue="") String searchValue
+	         ) throws Exception {
+		String cp = req.getContextPath();
 		
 		int numPerPage = 10;
-		int total_page = 0;
+		int total_page =0;
 		int dataCount;
 		
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -63,32 +65,32 @@ public class AdminEventController {
 		if(dataCount !=0)
 			total_page = myUtil.getPageCount(numPerPage, dataCount);
 		
-			if(total_page < current_page)
-				current_page = total_page;
+		if(total_page < current_page)
+			current_page = total_page;
 		
-			int start = (current_page - 1) * numPerPage;
-			if(start<0) start=0;  // 주의
+		int start = (current_page - 1) * numPerPage;
+		if(start<0) start=0;
 		
-			map.put("start", start);
-			
-			List<Event> list=service.eventlist(map);
-			int listNum,n=0;
-			Iterator<Event> it=list.iterator();
-			while(it.hasNext()){
-				Event data = it.next();
-				listNum = dataCount - (start + n);
-				data.setListNum(listNum);
-				n++;
-			}
-			
-			String params = "";
-			String urlList= "";
-			String urlArticle= "";
-			
-			if(!searchValue.equals("")) {
-	        	params = "searchKey=" +searchKey + 
-	        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
-	        }
+		map.put("start", start);
+		
+		List<Event> list=service.listEvent(map);
+		int listNum,n=0;
+		Iterator<Event> it=list.iterator();
+		while(it.hasNext()){
+			Event data= it.next();
+			listNum = dataCount - (start + n);
+			data.setListNum(listNum);
+			n++;
+		}
+		
+		String params = "";
+		String urlList= "";
+		String urlArticle= "";
+		
+		if(!searchValue.equals("")) {
+        	params = "searchKey=" +searchKey + 
+        	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
+        }
 		
 		ModelAndView mav=new ModelAndView("admin/adminevent/eventlist");
 		
@@ -96,22 +98,30 @@ public class AdminEventController {
 		mav.addObject("urlArticle", urlArticle);
 		mav.addObject("dataCount",dataCount);
         mav.addObject("pageIndexList", myUtil.pageIndexList(current_page, total_page, urlList));
-		
+        
 		return mav;
 	}
 	
 	// 이벤트 추가 폼
 	@RequestMapping(value="/admin/event/eventcreatedform", method=RequestMethod.POST)
-	public ModelAndView musicstoryCreatedForm(HttpSession session) throws Exception{
+	public ModelAndView eventCreatedForm(HttpSession session,
+			@RequestParam(value="eventNum", defaultValue="0") int eventNum,
+			@RequestParam(value="pageNo", defaultValue="1") String pageNo) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
 			return new ModelAndView("member/login");
 		}
 		
+		Event dto=service.readEvent(eventNum);
+		
 		ModelAndView mav=new ModelAndView("admin/adminevent/eventcreated");
-	      mav.addObject("mode", "created");
-	      
+	    if(eventNum==0)  
+	    	mav.addObject("mode", "created");
+	    else
+	    	mav.addObject("mode", "update");
+	    mav.addObject("dto", dto);
+	    mav.addObject("pageNo", pageNo);
 	      return mav;
 	}
 	
@@ -130,6 +140,84 @@ public class AdminEventController {
 		service.insertEvent(dto, path);
 		
 		return "redirect:/admin/event";
+	}
 		
+	@RequestMapping(value="/event/article")
+	public ModelAndView article(
+			HttpSession session, 
+			@RequestParam(value="eventNum") int eventNum,
+			@RequestParam(value="pageNo") String pageNo,
+			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
+			@RequestParam(value="searchValue", defaultValue="") String searchValue			
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return new ModelAndView("redirect:/member/login");
+		}
+		searchValue=URLDecoder.decode(searchValue, "utf-8");
+		
+		Event dto=service.readEvent(eventNum);
+		if(dto==null)
+			return new ModelAndView("redirect:/event/eventlist.do?pageNo="+pageNo);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("searchKey", searchKey);
+		map.put("searchValue", searchValue);
+		map.put("eventNum", eventNum);
+		
+		String params= "pageNo="+pageNo;
+		if(!searchValue.equals("")){
+			params += "&searchKey=" + searchKey +
+						"&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
+		}
+		
+		ModelAndView mav=new ModelAndView(".event.article");
+		mav.addObject("dto", dto);
+		mav.addObject("pageNo", pageNo);
+		mav.addObject("params", params);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/admin/event/updateeventform", method=RequestMethod.GET)
+	public ModelAndView eventUpdateForm(HttpSession session,
+			@RequestParam(value="eventNum") int eventNum,
+			@RequestParam(value="pageNo") String pageNo
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return new ModelAndView("redirect:/member/login");
+		}
+		
+		Event dto=(Event)service.readEvent(eventNum);
+		if(dto==null) {
+			return new ModelAndView("redirect:/event/eventlist?pageNo="+pageNo);
+		}
+		
+		if(! info.getUserId().equals(dto.getUserId())) {
+			return new ModelAndView("redirct:/event/eventlist?pageNo="+pageNo);
+		}
+		
+		ModelAndView mav=new ModelAndView(".four.admin.adminevent.main");
+		
+		mav.addObject("active", "created");
+		mav.addObject("eventNum", eventNum);
+		mav.addObject("mode", "update");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/admin/updateevent", method=RequestMethod.POST)
+	public String eventUpdateSubmit(HttpSession session,
+			Event dto,
+			@RequestParam(value="pageNo") String pageNo
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null) {
+			return "redirect:/memeber/login";
+		}
+		
+		service.updateEvent(dto);
+
+		return "redirect:/event/event";
 	}
 }

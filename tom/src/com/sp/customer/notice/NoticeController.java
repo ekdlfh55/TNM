@@ -93,10 +93,10 @@ public class NoticeController {
         	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
         }
         if(params.equals("")) {
-           urlList = cp+"/notice/main.do?active=notice?";
+           urlList = cp+"/notice/main.do?active=notice";
            urlArticle = cp+"/notice/article.do?pageNo=" + current_page;
         } else {
-            urlList = cp+"/notice/main.do?active=notice?" + params;
+            urlList = cp+"/notice/main.do?active=notice" + params;
             urlArticle = cp+"/notice/article.do?pageNo=" + current_page + "&"+ params;
         }
 
@@ -220,7 +220,7 @@ public class NoticeController {
 	public String updateSubmit(
 			HttpSession session, 
 			Notice dto,
-			@RequestParam String pageNo
+			@RequestParam(value="pageNo") String pageNo
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -229,7 +229,7 @@ public class NoticeController {
 		}
 		
 		if(! info.getUserId().equals("admin"))
-			return "redirect:/notice/main.do?pageNo="+pageNo;
+			return "redirect:/notice/main.do?";
 
 		dto.setUserId(info.getUserId());
 		service.updateNotice(dto);

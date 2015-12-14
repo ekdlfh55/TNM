@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
 
-function deleteStory(){
+function deleteEvent(){
 	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId!=dto.userId}">
 	var num = "${dto.num}";
 	var pageNo = "${pageNo}";

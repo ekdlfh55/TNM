@@ -49,7 +49,7 @@ function listPage(page) {
 
 <div class="col-md-9">
               <!-- Tabs -->
-	<div class="tab-v1">
+	<div class="tab-v2">
 		<div role="tabpanel">
 	    	<ul id="adminTab" class="nav nav-tabs" role="tablist">
 	        	<li role="presentation" class="active"><a href="#list" aria-controls="list" role="tab" data-toggle="tab">앨범 리스트</a></li>

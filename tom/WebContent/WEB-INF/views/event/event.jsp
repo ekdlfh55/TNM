@@ -11,29 +11,49 @@
     
     <div class="container">
     <div class="headline"><h2>${title }</h2></div>
+      
       <div class="row">
-            <div class="col-sm-6 sm-margin-bottom-40">
+      
+          <c:forEach var="dto" items="${list}">  
+            <div class="col-sm-6 sm-margin-40">
                 <div class="funny-boxes funny-boxes-left-green">
                     <div class="row">
-                        <div class="col-md-4 funny-boxes-img">
-                            <img class="img-responsive" src="<%=cp%>/res/main/assets/img/album/album7.jpg" alt="">
+                        <div class="col-md-5 funny-boxes-img">
+                            <img class="img-responsive" src="<%=cp%>/uploads/event/${dto.eventFilename}" alt="">
                             <ul class="list-unstyled">
-                            	<li><i class="fa-fw fa fa-map-marker"></i> 종류</li>
+                            	<li><i class="fa-fw fa fa-map-marker"></i> ${dto.division}</li>
                                <li>
-                               	<i class="fa-fw fa fa-briefcase"></i>시작날짜 ~
-                               	<i class="fa-fw fa fa-briefcase"></i>종료날짜        
+                               	<i class="fa-fw fa fa-briefcase"></i>${dto.createdstart } ~ ${dto.createdend }        
                                </li>   
                             </ul>
                         </div>
-                        <div class="col-md-8">
-                            <h2 align="center"><a href="#">제목</a></h2>              
-                            <p>내용cxcxcxcxcxcxcxcxcxcs</p>
+                        <div class="col-md-7">
+                            <h2 align="center"><a href="#">${dto.subject }</a></h2>              
+                            <p>${dto.content}</p>
                         </div>
                     </div>
                 </div>
             </div>
-    
+    	</c:forEach>
+    	
         </div>
+        
+        	<div class="page">
+				<table>
+					<tr align="center" height="15">
+					
+							<c:if test="${dataCount==0}">
+								등록된 게시물이 없다
+							</c:if> 
+							
+							<c:if test="${dataCount!=0}">
+								${pageIndexList}   
+							</c:if>				
+						
+					</tr>
+				</table>
+			</div>
+	
     </div>    
   
 </div><!--/wrapper-->

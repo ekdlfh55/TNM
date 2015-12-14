@@ -6,18 +6,7 @@
 	String cp=request.getContextPath();
 %>
 <div class="body2">
-    <!--=== Breadcrumbs ===-->
-    <div class="breadcrumbs">
-        <div class="container">           
-            <ul class="pull-right breadcrumb">
-                <li><a href="<%=cp%>">main</a></li>
-                <li><a href="<%=cp%>/member/login.do">login</a></li>
-                <li class="active">Registration</li>
-            </ul>
-        </div><!--/container-->
-    </div><!--/breadcrumbs-->
-    <!--=== End Breadcrumbs ===-->
-
+    
     <!--=== Content Part ===-->
     <div class="container content">
         <div class="row">

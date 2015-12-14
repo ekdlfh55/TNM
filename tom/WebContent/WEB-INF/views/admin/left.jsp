@@ -33,7 +33,7 @@
                     <li class="list-group-item list-toggle">
                         <a data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse-artistAlbum">앨범관리</a>
                         <ul id="collapse-artistAlbum" class="collapse">
-                            <li><a href="<%=cp%>/admin/album.do"><i class="fa fa-sort-alpha-asc"></i>아티스트앨범</a></li>                          
+                            <li><a href="<%=cp%>/admin/musicalbum.do"><i class="fa fa-sort-alpha-asc"></i>아티스트앨범</a></li>                          
                         </ul>
                     </li>
                     <!-- End 앨범 -->

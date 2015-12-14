@@ -120,11 +120,9 @@ function memberOk() {
 		                            <li><a href="<%=cp%>"><i class="fa fa-home"></i>홈으로 </a></li>
 		                            <li class="cd-log_reg"><a class="cd-signin" href="javascript:void(0);">로그인</a></li>
 		                            <li><a href="<%=cp%>/member/join.do"> 회원가입</a></li>
-		                            <li><a href="<%=cp%>/customer/main.do">고객센터</a></li>
+		                           
 		                        </c:when>
-								
-								                         
-		                        
+		                            
 		                        <c:otherwise>
 	                    			<li><font>${sessionScope.member.userName}</font>님</li>
 	                            	<li><a href="<%=cp%>/member/pwd.do?mode=update"> 정보수정</a></li>
@@ -132,6 +130,7 @@ function memberOk() {
 	                            </c:otherwise>
                             </c:choose>
                             
+                            <li><a href="<%=cp%>/customer/main.do">고객센터</a></li>
                             <c:if test="${sessionScope.member.userId=='admin'}">	
 								<li><a href="<%=cp%>/admin/member.do">관리자</a></li>
 							</c:if>
@@ -188,7 +187,7 @@ function memberOk() {
 	                   <!-- 커뮤니티 -->
 	
 	                    <!-- 뮤직스토리 -->
-	                    <li><a href="<%=cp%>/story/story.do">뮤직스토리 </a></li>
+	                    <li><a href="<%=cp%>/musicstory/story.do">뮤직스토리 </a></li>
 	                    <!-- 뮤직스토리 -->
 	
 	                    <!-- 마이탭 -->

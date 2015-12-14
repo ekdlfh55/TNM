@@ -21,7 +21,7 @@ public class AdminMusicAlbumController {
 	@RequestMapping(value="/admin/musicalbum")
 	public ModelAndView musicAlbum(
 		@RequestParam (defaultValue="list")String active) throws Exception {
-		ModelAndView mav=new ModelAndView(".four.admin.musicadminalbum.main");
+		ModelAndView mav=new ModelAndView(".four.admin.adminmusicalbum.main");
 		
 		mav.addObject("active", active);
 		

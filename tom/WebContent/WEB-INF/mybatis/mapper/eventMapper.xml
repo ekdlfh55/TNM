@@ -3,19 +3,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="event">
 
-<insert id="insertEvent" parameterType="com.sp.adminmain.Event">
-	INSERT INTO event(userId,division, subject, content, eventFilename, createdstart, createdend) VALUES(
-		#{userId},#{division},#{subject}, #{content}, #{eventFilename}, #{createdstart}, #{createdend})
-</insert>
+	<insert id="insertEvent" parameterType="com.sp.adminmain.Event">
+		INSERT INTO event(userId, division, subject, content, eventFilename, createdstart, createdend) VALUES(
+			#{userId},#{division},#{subject}, #{content}, #{eventFilename}, #{createdstart}, #{createdend})
+	</insert>
+	
+	<select id="dataCount" parameterType="map" resultType="Integer">
+		SELECT COALESCE(COUNT(*),0) FROM event
+	</select>
 
-<select id="dataCount" parameterType="map" resultType="Integer">
-		SELECT ifnull(COUNT(*), 0) FROM event
-</select>
-
-<select id="eventlist" parameterType="map" resultType="com.sp.adminmain.Event">
-	SELECT eventNum, division, subject, DATE_FORMAT(createdstart,'%Y-%m-%d')createdstart, DATE_FORMAT(createdend,'%Y-%m-%d')createdend
-		FROM event ORDER BY eventNum DESC LIMIT #{start}, 10;
-</select>
+	<select id="readEvent" parameterType="Integer" resultType="com.sp.adminmain.Event">
+		SELECT eventnum,userId,division,subject,content,eventFilename,DATE_FORMAT(createdstart,'%Y-%m-%d')createdstart,DATE_FORMAT(createdend,'%Y-%m-%d')createdend
+			FROM event WHERE eventnum=#{eventNum}
+	</select>
+	
+	<select id="listEvent" parameterType="map" resultType="com.sp.adminmain.Event">
+		SELECT eventnum,userId,division,subject,content,eventFilename,DATE_FORMAT(createdstart,'%Y-%m-%d')createdstart,DATE_FORMAT(createdend,'%Y-%m-%d')createdend
+			FROM event ORDER BY eventNum DESC LIMIT #{start},10;
+	</select>
 
 
 </mapper>

@@ -93,7 +93,7 @@ public class AdminMusicStoryController {
         }
 		if(params.length()!=0) {
             urlList = cp+"/musicstory/musicstorylist.do?" + params;
-            urlArticle = cp+"/musicstory/article.do?pageNum=" + current_page + "&"+ params;
+            urlArticle = cp+"/musicstory/article.do?pageNo=" + current_page + "&"+ params;
         }
 		
 		ModelAndView mav=new ModelAndView("admin/adminmusicstory/musicstorylist");
@@ -107,17 +107,26 @@ public class AdminMusicStoryController {
 	}
 	
 	@RequestMapping(value="/admin/musicstory/musicstorycreatedform",method=RequestMethod.POST)
-	public ModelAndView musicstoryCreatedForm(HttpSession session) throws Exception{
+	public ModelAndView musicstoryCreatedForm(HttpSession session,
+			@RequestParam(value="num", defaultValue="0") int num,
+			@RequestParam(value="pageNo", defaultValue="1") String pageNo
+			) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
 			return new ModelAndView("member/login");
 		}
 	
+		MusicStory dto=service.readMusicStory(num);
+		
 		ModelAndView mav=new ModelAndView("/admin/adminmusicstory/musicstorycreated");
-	      mav.addObject("mode", "created");
-	      
-	      return mav;
+		if(num==0)
+	          mav.addObject("mode", "created");
+		else
+		      mav.addObject("mode", "update");
+	    mav.addObject("dto", dto);
+	    mav.addObject("pageNo", pageNo);
+	    return mav;
 	}
 	@RequestMapping(value="/admin/musicstorycreated",method=RequestMethod.POST)
 	public String musicstoryCreatedSubmit(HttpSession session,MusicStory dto) throws Exception{
@@ -140,7 +149,7 @@ public class AdminMusicStoryController {
 	public ModelAndView article(
 			HttpSession session,
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNum") String pageNum,
+			@RequestParam(value="pageNo") String pageNo,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue			
 			) throws Exception{
@@ -153,29 +162,30 @@ public class AdminMusicStoryController {
 		
 		MusicStory dto=service.readMusicStory(num);
 		if(dto==null)
-			return new ModelAndView("redirect:/musicstory/musicstorylist.do?pageNum="+pageNum);
+			return new ModelAndView("redirect:/musicstory/musicstorylist.do?pageNo="+pageNo);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
 		map.put("num", num);
 		
-		String params= "pageNum="+pageNum;
+		String params= "pageNo="+pageNo;
 		if(!searchValue.equals("")){
 			params += "&searchKey=" + searchKey +
 						"&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
 		}
 		
-		ModelAndView mav=new ModelAndView(".four.admin.adminmusicstory.article");
+		ModelAndView mav=new ModelAndView(".musicstory.article");
 		mav.addObject("dto", dto);
-		mav.addObject("pageNum", pageNum);
+		mav.addObject("pageNo", pageNo);
 		mav.addObject("params", params);
 		
 		return mav;
 	}
-	@RequestMapping(value="/musicstory/musicupdateform", method=RequestMethod.POST)
-	public ModelAndView musicstoryUpdatForm(HttpSession session,
+	
+	@RequestMapping(value="/admin/musicstory/updatemusicstoryform", method=RequestMethod.GET)
+	public ModelAndView musicstoryUpdateForm(HttpSession session,
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNum") String pageNum
+			@RequestParam(value="pageNo") String pageNo
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null){
@@ -184,32 +194,34 @@ public class AdminMusicStoryController {
 		
 		MusicStory dto=(MusicStory)service.readMusicStory(num);
 		if(dto==null) {
-			return new ModelAndView("redirect:/musicstory/musicstorylist?pageNum="+pageNum);
+			return new ModelAndView("redirect:/musicstory/musicstorylist?pageNo="+pageNo);
 		}
 		
 		if(! info.getUserId().equals(dto.getUserId())) {
-			return new ModelAndView("redirct:/musicstory/musicstorylist?pgaeNum="+pageNum);
+			return new ModelAndView("redirct:/musicstory/musicstorylist?pageNo="+pageNo);
 		}
 		
-		ModelAndView mav=new ModelAndView(".four.admin.adminmusicstory.created");
-		mav.addObject("dto", dto);
+		ModelAndView mav=new ModelAndView(".four.admin.adminmusicstory.main");
+		
+		mav.addObject("active", "created");
+		mav.addObject("num", num);
 		mav.addObject("mode", "update");
-		mav.addObject("pageNum", pageNum);
 		
 		return mav;
 	}
-	@RequestMapping(value="/musicstory/musicstoryupdate", method=RequestMethod.POST)
-	public ModelAndView musicUpdateSubmit(HttpSession session,
+	
+	@RequestMapping(value="/admin/updatemusicstory", method=RequestMethod.POST)
+	public String musicUpdateSubmit(HttpSession session,
 			MusicStory dto,
-			@RequestParam(value="pageNum") String pageNum
+			@RequestParam(value="pageNo") String pageNo
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		if(info==null){
-			return new ModelAndView("redirect:/member/login");
+		if(info==null) {
+			return "redirect:/memeber/login";
 		}
 		
 		service.updateMusicStory(dto);
-		
-		return new ModelAndView("redirct:/musicstory/musicstroylist?pageNum="+pageNum);
+
+		return "redirect:/musicstory/story";
 	}
 }

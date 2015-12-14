@@ -46,23 +46,25 @@ function listPage(page) {
 	}
 </script>
 
-
-<div class="tab-v1">
-
-	<div role="tabpanel">
+<div class="wrap">
+<div class="container content">
+	<div class="tab-v2">
 	
-		<ul id="customerTab" class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">홈</a></li>
-			<li role="presentation"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">공지사항</a></li>
-			<li role="presentation"><a href="#ovonotice" aria-controls="ovonotice" role="tab" data-toggle="tab">1:1질문게시판</a></li>
-		</ul>
+		<div role="tabpanel" style="margin-top: 30px;">
 		
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="home"></div>
-			<div role="tabpanel" class="tab-pane" id="notice"></div>
-			<div role="tabpanel" class="tab-pane" id="ovonotice"></div>
+			<ul id="customerTab" class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">홈</a></li>
+				<li role="presentation"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">공지사항</a></li>
+				<li role="presentation"><a href="#ovonotice" aria-controls="ovonotice" role="tab" data-toggle="tab">1:1질문게시판</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home"></div>
+				<div role="tabpanel" class="tab-pane" id="notice"></div>
+				<div role="tabpanel" class="tab-pane" id="ovonotice"></div>
+			</div>
+			
 		</div>
-		
 	</div>
-	
+</div>
 </div>

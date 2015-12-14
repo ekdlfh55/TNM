@@ -34,7 +34,7 @@ function storycheck() {
     if(mode=="created")
         f.action = "<%=cp%>/admin/musicstorycreated.do";
     else if(mode=="update")
-        f.action = "<%=cp%>/notice/musicstoryupdate.do";
+        f.action = "<%=cp%>/admin/updatemusicstory.do";
 
 		return true;
 	}
@@ -51,7 +51,7 @@ function storycheck() {
 				<div class="col-md-6">
 					<section>
 						<label class="label">제목</label> <label class="input"> <input
-							name="subject" type="text">
+							name="subject" type="text" value="${dto.subject}">
 						</label>
 					</section>
 				</div>
@@ -68,7 +68,7 @@ function storycheck() {
 			<div class="row">
 				<div class="col-md-6">
 					<label class="label">간략소개</label> <label class="input"> <input
-							name="subcontent" type="text">
+							name="subcontent" type="text" value="${dto.subcontent}">
 					</label>
 				</div>
 				<div class="col-md-6">
@@ -109,12 +109,19 @@ function storycheck() {
 					</section>
 				</div>
 			</div>
-
+			<c:if test="${mode=='update'}">
+			<div>
+			 <div class="col-md-12">
+			     <label class="label">첨부된파일 </label>
+			     <label>${dto.imageFilename}</label>
+			  </div>
+			</div>
+			</c:if>
 			<div class="row">
 				<div class="col-md-12">
 					<section>
 						<label class="label">인터뷰 내용</label> <label class="textarea">
-							<textarea id="content" name="content"  style="width: 100%;"></textarea>
+							<textarea id="content" name="content"  style="width: 100%;">${dto.content}</textarea>
 						</label>
 						<div class="note">
 							<strong>Note:</strong> height of the textarea depends on the rows
@@ -126,19 +133,22 @@ function storycheck() {
 		</fieldset>
 	
 	<div align="center">
+	<c:if test="${mode=='created'}">
 		<footer>
 			<button type="submit" class="btn-u">등록하기</button>
 			<button type="reset" class="btn-u btn-u-default">등록취소</button>
 			<button type="button" class="btn-u btn-u-default"
 				onclick="window.history.back();">돌아가기</button>
 		</footer>
-		
+		</c:if>
 		<c:if test="${mode=='update'}">
 			<footer>
 				<button type="submit" class="btn-u">수정하기</button>
 				<button type="reset" class="btn-u btn-u-default">등록취소</button>
 				<button type="button" class="btn-u btn-u-default"
 					onclick="window.history.back();">돌아가기</button>
+				<input type="hidden" name="pageNo" value="${pageNo}">
+                <input type="hidden" name="num" value="${dto.num}">    
 			</footer>
 		</c:if>
 		
