@@ -30,4 +30,8 @@
 		UPDATE musicstory SET subject=#{subject}, subcontent=#{subcontent}, division=#{division}, content=#{content}, imageFilename=#{imageFilename} 
 		WHERE num=#{num}
 	</update>
+	
+	<delete id="deleteMusicStory" parameterType="Integer">
+		DELETE FROM musicstory WHERE num = #{num}	
+	</delete>
 </mapper>

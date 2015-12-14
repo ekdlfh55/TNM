@@ -10,4 +10,5 @@ public interface MusicStoryService {
 	public MusicStory readMusicStory(int num);
 	public int updateHitCount(int num);
 	public int updateMusicStory(MusicStory dto);
+	public int deleteMusicStory(int num);
 }

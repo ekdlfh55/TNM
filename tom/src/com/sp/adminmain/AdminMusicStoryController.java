@@ -224,4 +224,26 @@ public class AdminMusicStoryController {
 
 		return "redirect:/musicstory/story";
 	}
+	@RequestMapping(value="/musicstory/delete")
+	public ModelAndView deleteMusicStory(HttpSession session,
+			@RequestParam(value="num") int num,
+			@RequestParam(value="pageNo") String pageNo
+			) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return new ModelAndView("redirect:/member/login");
+		}
+		
+		MusicStory dto=service.readMusicStory(num);
+		if(dto==null){
+			return new ModelAndView("redirect:/musicstory/list?pageNo="+pageNo);
+		}
+		if(! info.getUserId().equals(dto.getUserId()) && ! info.getUserId().equals("admin")){
+			return new ModelAndView("redirect:/musicstory/list?pageNo="+pageNo);
+		}
+		service.deleteMusicStory(num);
+		
+		return new ModelAndView("redirect:/musicstory/story");
+		
+	}
 }

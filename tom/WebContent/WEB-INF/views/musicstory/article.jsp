@@ -13,7 +13,7 @@ function deleteMusicStory(){
 	var num = "${dto.num}";
 	var pageNo = "${pageNo}";
 	var params = "num="+num+"&pageNo="+pageNo;
-	var url="<%=cp%>/story/delete?" + params;
+	var url="<%=cp%>/musicstory/delete?" + params;
 	
 	if(confirm("위 자료를 삭제 하시 겠습니까?"))
 		location.href=url;
@@ -146,7 +146,7 @@ function deleteReply(replyNum, pageNo){
 										
 					<c:if test="${sessionScope.member.userId=='admin'}">							
 						<button style="margin-left: 30px;" class="btn btn-warning" type="button" onclick="updateMusicStory();"><i class="fa fa-search"></i>수정하기</button>
-						<button type="button"  class="btn btn-warning" onclick=" deleteFreeBoard();"><i class="fa fa-search"></i>삭제하기</button>
+						<button type="button"  class="btn btn-warning" onclick=" deleteMusicStory();"><i class="fa fa-search"></i>삭제하기</button>
 					</c:if>	
 						<button type="submit" class="btn btn-warning" onclick="window.history.back();">돌아가기</button>
 						

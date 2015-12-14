@@ -8,8 +8,23 @@
 <script type="text/javascript">
 function searchMusicStory() {
 	var f=document.searchForm;
-	f.action="<%=cp%>/freeBoard/list";
+	f.action="<%=cp%>/admin/musicstory/musicstorylist";
  	f.submit();
+}
+
+function deleteMusicStory(){
+	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId!=dto.userId}">
+	var num = "${dto.num}";
+	var pageNo = "${pageNo}";
+	var params = "num="+num+"&pageNo="+pageNo;
+	var url="<%=cp%>/musicstory/delete?" + params;
+	
+	if(confirm("위 자료를 삭제 하시 겠습니까?"))
+		location.href=url;
+	</c:if>
+	<c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
+		alert("게시물을 삭제할 수 없습니다.");
+	</c:if>
 }
 </script>
 
@@ -17,7 +32,7 @@ function searchMusicStory() {
 <div class="panel panel-grey margin-bottom-40">
 	<div class="panel-heading">
 		<h3 class="panel-title">
-			<i class="fa fa-tasks"></i>맴버 리스트
+			<i class="fa fa-tasks"></i>뮤직스토리 리스트
 		</h3>
 	</div>
 	<div class="panel-body">
@@ -29,7 +44,7 @@ function searchMusicStory() {
 			</select>
 			
 			<input  type="text" class="form-control" name="searchValue" />
-	        <button class="btn btn-warning" type="button" onclick="searchList()"><i class="fa fa-search"></i>검색</button>
+	        <button class="btn btn-warning" type="button" onclick="deleteMusicStory()"><i class="fa fa-search"></i>검색</button>
 	                    		
 		</form>
 	</div>
@@ -53,7 +68,7 @@ function searchMusicStory() {
 				<td  width="15%">${dto.subject}</td>
 				<td align="center" width="15%">${dto.division}</td>
 				<td align="center" width="15%">${dto.created}</td>
-				<td align="center" width="15%"><button class="btn btn-warning btn-xs"><i class="fa fa-trash-o"></i>&nbsp;삭제</button></td>
+				<td align="center" width="15%"><button class="btn btn-warning btn-xs" onclick="deleteList()"><i class="fa fa-trash-o"></i>&nbsp;삭제</button></td>
 			</tr>
 	</c:forEach>
 			

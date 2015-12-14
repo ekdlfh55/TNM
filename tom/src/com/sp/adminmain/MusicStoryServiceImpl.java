@@ -87,5 +87,15 @@ public class MusicStoryServiceImpl implements MusicStoryService {
 		}
 		return result;
 	}
+	@Override
+	public int deleteMusicStory(int num) {
+		int result=0;
+		try {
+			result=dao.deleteData("musicstory.deleteMusicStory", num);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
 
 }
