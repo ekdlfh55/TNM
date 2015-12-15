@@ -122,7 +122,7 @@
 		                        <button type="reset" class="btn-u">다시쓰기</button>
 		                        <button type="button" class="btn-u btn-u-default" onclick="window.history.back();">돌아가기</button>
 		                        
-		                        <input type="hidden" name="pageNo" value="${pageNo}">
+		                        <input type="hidden" name="pageNum" value="${pageNum}">
                 				<input type="hidden" name="num" value="${dto.num}">  	
 	                        </c:if>
 	                        

@@ -32,7 +32,7 @@ public class NoticeController {
 	
 	@RequestMapping(value="/notice/list")
 	public ModelAndView list(HttpServletRequest req,
-			@RequestParam(value="pageNo", defaultValue="1") int current_page,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception {
@@ -87,17 +87,17 @@ public class NoticeController {
         
         String params = "";
         String urlList = cp+"/notice/main.do?active=notice"; 
-        String urlArticle = cp+"/notice/article.do?pageNo=" + current_page;
+        String urlArticle = cp+"/notice/article.do?pageNum=" + current_page;
         if(!searchValue.equals("")) {
         	params = "searchKey=" +searchKey + 
         	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
         }
         if(params.equals("")) {
            urlList = cp+"/notice/main.do?active=notice";
-           urlArticle = cp+"/notice/article.do?pageNo=" + current_page;
+           urlArticle = cp+"/notice/article.do?pageNum=" + current_page;
         } else {
             urlList = cp+"/notice/main.do?active=notice" + params;
-            urlArticle = cp+"/notice/article.do?pageNo=" + current_page + "&"+ params;
+            urlArticle = cp+"/notice/article.do?pageNum=" + current_page + "&"+ params;
         }
 
         
@@ -107,7 +107,7 @@ public class NoticeController {
         mav.addObject("noticeList", noticeList);
         mav.addObject("list", list);
         mav.addObject("urlArticle", urlArticle);
-        mav.addObject("pageNo", current_page);
+        mav.addObject("pageNum", current_page);
         mav.addObject("dataCount", dataCount);
         mav.addObject("pageIndexList", myUtil.pageIndexList(current_page, total_page, urlList));		
 		
@@ -159,7 +159,7 @@ public class NoticeController {
 	@RequestMapping(value="/notice/article")
 	public ModelAndView article(
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNo") String pageNo,
+			@RequestParam(value="pageNum") String pageNum,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception {
@@ -169,7 +169,7 @@ public class NoticeController {
 
 		Notice dto = service.readNotice(num);
 		if(dto==null)
-			new ModelAndView("redirect:/customer/main.do?active=notice?pageNo="+pageNo);
+			new ModelAndView("redirect:/customer/main.do?active=notice?pageNum="+pageNum);
 		
 		
 		// 전체 라인수
@@ -179,7 +179,7 @@ public class NoticeController {
 		ModelAndView mav=new ModelAndView(".customer.notice.article");
 		
 		mav.addObject("dto", dto);
-		mav.addObject("pageNo", pageNo);
+		mav.addObject("pageNum", pageNum);
 
 		return mav;
 	}
@@ -188,7 +188,7 @@ public class NoticeController {
 	public ModelAndView updateForm(
 			HttpSession session,
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNo") String pageNo
+			@RequestParam(value="pageNum") String pageNum
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -197,11 +197,11 @@ public class NoticeController {
 		}
 		
 		if(! info.getUserId().equals("admin"))
-			return new ModelAndView("redirect:/notice/main.do?active=notice&pageNo="+pageNo);
+			return new ModelAndView("redirect:/notice/main.do?active=notice&pageNum="+pageNum);
 		
 		Notice dto = (Notice) service.readNotice(num);
 		if(dto==null) {
-			return new ModelAndView("redirect:/notice/main.do?active=notice&pageNo="+pageNo);
+			return new ModelAndView("redirect:/notice/main.do?active=notice&pageNum="+pageNum);
 		}
 
 		
@@ -209,7 +209,7 @@ public class NoticeController {
 		ModelAndView mav=new ModelAndView(".customer.notice.created");
 		mav.addObject("mode", "update");
 		mav.addObject("title","공지사항 수정");
-		mav.addObject("pageNo", pageNo);
+		mav.addObject("pageNum", pageNum);
 		mav.addObject("dto", dto);
 	
 		
@@ -220,7 +220,7 @@ public class NoticeController {
 	public String updateSubmit(
 			HttpSession session, 
 			Notice dto,
-			@RequestParam(value="pageNo") String pageNo
+			@RequestParam(value="pageNum") String pageNum
 			) throws Exception {
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
@@ -241,7 +241,7 @@ public class NoticeController {
 	public String delete(
 			HttpSession session,
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNo") String pageNo
+			@RequestParam(value="pageNum") String pageNum
 			) throws Exception {
 		
 				

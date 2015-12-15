@@ -11,8 +11,8 @@
 function deleteMusicStory(){
 	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId!=dto.userId}">
 	var num = "${dto.num}";
-	var pageNo = "${pageNo}";
-	var params = "num="+num+"&pageNo="+pageNo;
+	var pageNum = "${pageNum}";
+	var params = "num="+num+"&pageNum="+pageNum;
 	var url="<%=cp%>/musicstory/delete?" + params;
 	
 	if(confirm("위 자료를 삭제 하시 겠습니까?"))
@@ -26,8 +26,8 @@ function deleteMusicStory(){
 function updateMusicStory() {
 	<c:if test="${sessionScope.member.userId==dto.userId}">
 		var num = "${dto.num}";
-		var pageNo ="${pageNo}";
-		var params = "num="+num+"&pageNo="+pageNo;
+		var pageNum ="${pageNum}";
+		var params = "num="+num+"&pageNum="+pageNum;
 		var url ="<%=cp%>/admin/musicstory/updatemusicstoryform.do?" + params;
 		// var url="<%=cp%>/admin/musicstory.do?"+params;
 		
@@ -51,7 +51,7 @@ function listPage(page){
 	var url="<%=cp%>/story/listReply";
 	var num="${dto.num}";
 	//TEXT
-	$.post(url, {num:num, pageNo:page}, function(data){
+	$.post(url, {num:num, pageNum:page}, function(data){
 		$("#listReply").html(data); 
 	});
 }
@@ -88,7 +88,7 @@ function sendReply() {
 		}
 	})	
 }
-function deleteReply(replyNum, pageNo){
+function deleteReply(replyNum, pageNum){
 	if(! confirm("댓글을 삭제 하시겠습니까?"))
 		return false;
 	
@@ -99,7 +99,7 @@ function deleteReply(replyNum, pageNo){
 		}else if(data.state=="false"){
 			alert("댓글을 삭제할 수 없습니다.");
 		}else{
-			listPage(pageNo);
+			listPage(pageNum);
 		}
 	},"json");
 	

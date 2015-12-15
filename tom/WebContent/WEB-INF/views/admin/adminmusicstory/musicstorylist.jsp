@@ -15,8 +15,8 @@ function searchMusicStory() {
 function deleteMusicStory(){
 	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId!=dto.userId}">
 	var num = "${dto.num}";
-	var pageNo = "${pageNo}";
-	var params = "num="+num+"&pageNo="+pageNo;
+	var pageNum = "${pageNum}";
+	var params = "num="+num+"&pageNum="+pageNum;
 	var url="<%=cp%>/musicstory/delete?" + params;
 	
 	if(confirm("위 자료를 삭제 하시 겠습니까?"))

@@ -28,7 +28,7 @@ function eventcheck() {
     if(mode=="created")
         f.action = "<%=cp%>/admin/eventcreated.do";
     else if(mode=="update")
-        f.action = "<%=cp%>/admin/update.do";
+        f.action = "<%=cp%>/admin/updateevent.do";
 
 		return true;
 	}
@@ -43,7 +43,7 @@ function eventcheck() {
 				<div class="col-md-10">
 					<section>
 						<label class="label">제목</label> <label class="input"> <input
-							type="text" name="subject">
+							type="text" name="subject" value="${dto.subject}">
 						</label>
 					</section>
 				</div>
@@ -93,13 +93,21 @@ function eventcheck() {
 					</section>
 				</div>
 			</div>
+			<c:if test="${mode=='update'}">
+			<div>
+			 <div class="col-md-12">
+			     <label class="label">첨부된파일 </label>
+			     <label>${dto.eventFilename}</label>
+			  </div>
+			</div>
+			</c:if>
 	
 	
 			<div class="row">
 				<div class="col-md-11">
 					<section>
 						<label class="label">내용</label> <label class="textarea"> <textarea
-								rows="3" id="content" name="content" style="width: 100%;"></textarea>
+								rows="3" id="content" name="content" style="width: 100%;">${dto.content}</textarea>
 						</label>
 						<div class="note">
 							<strong>Note:</strong> height of the textarea depends on the rows
@@ -110,12 +118,27 @@ function eventcheck() {
 			</div>
 		</fieldset>
 	
+<div align="center">
+	<c:if test="${mode=='created'}">
 		<footer>
 			<button type="submit" class="btn-u">등록하기</button>
 			<button type="reset" class="btn-u btn-u-default">등록취소</button>
 			<button type="button" class="btn-u btn-u-default"
 				onclick="window.history.back();">돌아가기</button>
 		</footer>
+		</c:if>
+		<c:if test="${mode=='update'}">
+			<footer>
+				<button type="submit" class="btn-u">수정하기</button>
+				<button type="reset" class="btn-u btn-u-default">등록취소</button>
+				<button type="button" class="btn-u btn-u-default"
+					onclick="window.history.back();">돌아가기</button>
+				<input type="hidden" name="pageNum" value="${pageNum}">
+                <input type="hidden" name="eventNum" value="${dto.eventNum}">    
+			</footer>
+		</c:if>
+		
+	</div>
 	</form>
 </div>
 

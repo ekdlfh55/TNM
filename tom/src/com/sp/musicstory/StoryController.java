@@ -30,13 +30,13 @@ public class StoryController {
 	
 	@RequestMapping(value="musicstory/story",method=RequestMethod.GET)
 	public ModelAndView StoryForm(HttpServletRequest req,
-			@RequestParam(value="pageNo", defaultValue="1") int current_page,
+			@RequestParam(value="pageNum", defaultValue="1") int current_page,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 	        @RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception{
 		String cp= req.getContextPath();
 		  
-		int numPerPage = 4;
+		int numPerPage = 10;
 		int total_page =0;
 		int dataCount;
 		
@@ -73,7 +73,7 @@ public class StoryController {
 		
 		String params = "";
 		String urlList= cp+"/musicstory/story.do";
-		String urlArticle= cp+"/musicstory/article.do?pageNo=" + current_page;
+		String urlArticle= cp+"/musicstory/article.do?pageNum=" + current_page;
 		
 		if(!searchValue.equals("")) {
         	params = "searchKey=" +searchKey + 
@@ -82,7 +82,7 @@ public class StoryController {
 			
 		if(params.length()!=0) {
             urlList = cp+"/musicstory/musicstorylist.do?" + params;
-            urlArticle = cp+"/musicstory/article.do?pageNo=" + current_page + "&"+ params;
+            urlArticle = cp+"/musicstory/article.do?pageNum=" + current_page + "&"+ params;
         }
 		
 		ModelAndView mav=new ModelAndView(".musicstory.story");
@@ -100,7 +100,7 @@ public class StoryController {
 	public ModelAndView article(
 			HttpSession session,
 			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNo") String pageNo,
+			@RequestParam(value="pageNum") String pageNum,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue
 			) throws Exception{
@@ -116,12 +116,12 @@ public class StoryController {
 		MusicStory dto=service.readMusicStory(num);
 		
 		if(dto==null)
-			return new ModelAndView("redirect:/story/article.do?pageNo="+pageNo);
+			return new ModelAndView("redirect:/story/article.do?pageNum="+pageNum);
 		
 		ModelAndView mav= new ModelAndView(".story.article");
 		
 		mav.addObject("dto", dto);
-		mav.addObject("pageNo", pageNo);
+		mav.addObject("pageNum", pageNum);
 		
 		return mav;
 	}*/

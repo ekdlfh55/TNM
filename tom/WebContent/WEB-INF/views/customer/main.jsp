@@ -30,7 +30,7 @@ function listPage(page) {
     else	if(active=="ovonotice")
 	    url="<%=cp%>/ovonotice/list.do";
 
-		var params = "pageNo=" + page;
+		var params = "pageNum=" + page;
 		$.ajax({
 			//type:"post",
 			url : url,

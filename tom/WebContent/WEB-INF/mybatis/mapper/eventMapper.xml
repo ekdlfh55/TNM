@@ -7,6 +7,10 @@
 		INSERT INTO event(userId, division, subject, content, eventFilename, createdstart, createdend) VALUES(
 			#{userId},#{division},#{subject}, #{content}, #{eventFilename}, #{createdstart}, #{createdend})
 	</insert>
+	<update id="updateEvent">
+		UPDATE event SET subject=#{subject}, division=#{division}, createdstart=#{createdstart}, createdend=#{createdend}, content=#{content}, eventFilename=#{eventFilename} 
+		WHERE eventNum=#{eventNum}
+	</update>
 	
 	<select id="dataCount" parameterType="map" resultType="Integer">
 		SELECT COALESCE(COUNT(*),0) FROM event

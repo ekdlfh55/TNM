@@ -87,6 +87,7 @@ public class MusicStoryServiceImpl implements MusicStoryService {
 		}
 		return result;
 	}
+	
 	@Override
 	public int deleteMusicStory(int num) {
 		int result=0;

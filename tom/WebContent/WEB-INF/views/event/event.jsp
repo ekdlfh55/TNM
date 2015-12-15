@@ -19,7 +19,7 @@
                 <div class="funny-boxes funny-boxes-left-green">
                     <div class="row">
                         <div class="col-md-5 funny-boxes-img">
-                            <img class="img-responsive" src="<%=cp%>/uploads/event/${dto.eventFilename}" alt="">
+                            <img class="img-responsive" src="<%=cp%>/uploads/event/${dto.eventFilename}">
                             <ul class="list-unstyled">
                             	<li><i class="fa-fw fa fa-map-marker"></i> ${dto.division}</li>
                                <li>
@@ -28,7 +28,7 @@
                             </ul>
                         </div>
                         <div class="col-md-7">
-                            <h2 align="center"><a href="#">${dto.subject }</a></h2>              
+                            <h2 align="center"><a href="${urlArticle}&eventNum=${dto.eventNum}">${dto.subject}</a></h2>              
                             <p>${dto.content}</p>
                         </div>
                     </div>

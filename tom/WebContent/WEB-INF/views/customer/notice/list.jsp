@@ -47,10 +47,10 @@
 		<c:forEach var="dto" items="${list}" varStatus="status">
 			<tbody>
 				<tr align="center" bgcolor="#ffffff" height="25">
-					<c:if test="${status.first && pageNo==1}">
+					<c:if test="${status.first && pageNum==1}">
 						<td>공지</td>
 					</c:if>
-					<c:if test="${!status.first || pageNo!=1}">
+					<c:if test="${!status.first || pageNum!=1}">
 						<td width="5%">${dto.listNum }</td>
 					</c:if>
 					<td width="15%">${dto.genre}</td>

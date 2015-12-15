@@ -12,8 +12,8 @@
 function updateGenre() {
 	<c:if test="${sessionScope.member.userId==dto.userId}">
 	  var num = "${dto.num}";
-	  var pageNo = "${pageNo}";
-	  var params = "num="+num+"&pageNo="+pageNo;
+	  var pageNum = "${pageNum}";
+	  var params = "num="+num+"&pageNum="+pageNum;
 		var url="<%=cp%>/notice/update?"+params;
 		
 			location.href=url;
@@ -28,8 +28,8 @@ function updateGenre() {
 function deleteGenre() {
 	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.memever.userId==dto.userId}">
 	var num = "${dto.num}";
-	var pageNo="${pageNo}";
-	var params = "num=" +num + "&pageNo=" +pageNo;
+	var pageNum="${pageNum}";
+	var params = "num=" +num + "&pageNum=" +pageNum;
 	var url="<%=cp%>/notice/delete.do?" +params;
 	
 	if(confirm("위 자료를 삭제 하시겠습니까?"))

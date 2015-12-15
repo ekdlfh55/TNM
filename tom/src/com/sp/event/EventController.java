@@ -30,9 +30,9 @@ public class EventController {
 	
 	@RequestMapping(value="/event/event",method=RequestMethod.GET)
 	public ModelAndView eventlist(HttpServletRequest req,
-			 @RequestParam(value="pageNo", defaultValue="1") int current_page		 
+			 @RequestParam(value="pageNum", defaultValue="1") int current_page		 
 	         ) throws Exception{
-
+		String cp= req.getContextPath();
 		
 		int numPerPage = 10;
 		int total_page =0;
@@ -64,10 +64,15 @@ public class EventController {
 			n++;
 		}
 		
+		String params = "";
+		String urlList = cp+"/event/event.do";
+		String urlArticle= cp+"/event/article.do?pageNum=" + current_page;
 
-		String urlList= "";
-		String urlArticle= "";
-
+		if(params.length()!=0) {
+            urlList = cp+"/event/eventlist.do?" + params;
+            urlArticle = cp+"/event/article.do?pageNum=" + current_page + "&"+ params;
+        }
+		
 		ModelAndView mav=new ModelAndView(".event.event");
 		
 		mav.addObject("title","¿Ã∫•∆Æ");
@@ -76,8 +81,6 @@ public class EventController {
 		mav.addObject("dataCount",dataCount);
         mav.addObject("pageIndexList", myUtil.pageIndexList(current_page, total_page, urlList));
         
-        
-		
 		return mav;
 	}
 

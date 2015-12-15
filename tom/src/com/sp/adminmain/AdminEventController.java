@@ -42,7 +42,7 @@ public class AdminEventController {
 	// 이벤트 리스트
 	@RequestMapping(value="admin/event/eventlist")
 	public ModelAndView eventList(HttpServletRequest req,
-			 @RequestParam(value="pageNo", defaultValue="1") int current_page,
+			 @RequestParam(value="pageNum", defaultValue="1") int current_page,
 			 @RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 	         @RequestParam(value="searchValue", defaultValue="") String searchValue
 	         ) throws Exception {
@@ -91,6 +91,10 @@ public class AdminEventController {
         	params = "searchKey=" +searchKey + 
         	             "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");	
         }
+		if(params.length()!=0) {
+            urlList = cp+"/event/eventlist.do?" + params;
+            urlArticle = cp+"/event/article.do?pageNum=" + current_page + "&"+ params;
+        }
 		
 		ModelAndView mav=new ModelAndView("admin/adminevent/eventlist");
 		
@@ -106,7 +110,7 @@ public class AdminEventController {
 	@RequestMapping(value="/admin/event/eventcreatedform", method=RequestMethod.POST)
 	public ModelAndView eventCreatedForm(HttpSession session,
 			@RequestParam(value="eventNum", defaultValue="0") int eventNum,
-			@RequestParam(value="pageNo", defaultValue="1") String pageNo) throws Exception{
+			@RequestParam(value="pageNum", defaultValue="1") String pageNum) throws Exception{
 		
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {
@@ -120,8 +124,8 @@ public class AdminEventController {
 	    	mav.addObject("mode", "created");
 	    else
 	    	mav.addObject("mode", "update");
-	    mav.addObject("dto", dto);
-	    mav.addObject("pageNo", pageNo);
+	    	mav.addObject("dto", dto);
+	    	mav.addObject("pageNum", pageNum);
 	      return mav;
 	}
 	
@@ -146,7 +150,7 @@ public class AdminEventController {
 	public ModelAndView article(
 			HttpSession session, 
 			@RequestParam(value="eventNum") int eventNum,
-			@RequestParam(value="pageNo") String pageNo,
+			@RequestParam(value="pageNum") String pageNum,
 			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
 			@RequestParam(value="searchValue", defaultValue="") String searchValue			
 			) throws Exception {
@@ -158,13 +162,13 @@ public class AdminEventController {
 		
 		Event dto=service.readEvent(eventNum);
 		if(dto==null)
-			return new ModelAndView("redirect:/event/eventlist.do?pageNo="+pageNo);
+			return new ModelAndView("redirect:/event/eventlist.do?pageNum="+pageNum);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
 		map.put("eventNum", eventNum);
 		
-		String params= "pageNo="+pageNo;
+		String params= "pageNum="+pageNum;
 		if(!searchValue.equals("")){
 			params += "&searchKey=" + searchKey +
 						"&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
@@ -172,7 +176,7 @@ public class AdminEventController {
 		
 		ModelAndView mav=new ModelAndView(".event.article");
 		mav.addObject("dto", dto);
-		mav.addObject("pageNo", pageNo);
+		mav.addObject("pageNum", pageNum);
 		mav.addObject("params", params);
 		
 		return mav;
@@ -181,7 +185,7 @@ public class AdminEventController {
 	@RequestMapping(value="/admin/event/updateeventform", method=RequestMethod.GET)
 	public ModelAndView eventUpdateForm(HttpSession session,
 			@RequestParam(value="eventNum") int eventNum,
-			@RequestParam(value="pageNo") String pageNo
+			@RequestParam(value="pageNum") String pageNum
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null){
@@ -190,11 +194,11 @@ public class AdminEventController {
 		
 		Event dto=(Event)service.readEvent(eventNum);
 		if(dto==null) {
-			return new ModelAndView("redirect:/event/eventlist?pageNo="+pageNo);
+			return new ModelAndView("redirect:/event/eventlist?pageNum="+pageNum);
 		}
 		
 		if(! info.getUserId().equals(dto.getUserId())) {
-			return new ModelAndView("redirct:/event/eventlist?pageNo="+pageNo);
+			return new ModelAndView("redirct:/event/eventlist?pageNum="+pageNum);
 		}
 		
 		ModelAndView mav=new ModelAndView(".four.admin.adminevent.main");
@@ -209,7 +213,7 @@ public class AdminEventController {
 	@RequestMapping(value="/admin/updateevent", method=RequestMethod.POST)
 	public String eventUpdateSubmit(HttpSession session,
 			Event dto,
-			@RequestParam(value="pageNo") String pageNo
+			@RequestParam(value="pageNum") String pageNum
 			) throws Exception {
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		if(info==null) {

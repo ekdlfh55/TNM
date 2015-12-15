@@ -46,11 +46,11 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public Event readEvent(int eventnum) {
+	public Event readEvent(int eventNum) {
 		Event dto=null;
 		
 		try {
-			dto=dao.getReadData("event.readEvent",eventnum);
+			dto=dao.getReadData("event.readEvent", eventNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
