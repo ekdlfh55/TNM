@@ -162,7 +162,7 @@ public class AdminEventController {
 		
 		Event dto=service.readEvent(eventNum);
 		if(dto==null)
-			return new ModelAndView("redirect:/event/eventlist.do?pageNum="+pageNum);
+			return new ModelAndView("redirect:/event/eventlist?pageNum="+pageNum);
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("searchKey", searchKey);
 		map.put("searchValue", searchValue);
@@ -220,8 +220,29 @@ public class AdminEventController {
 			return "redirect:/memeber/login";
 		}
 		
-		service.updateEvent(dto);
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" + File.separator + "event";
+		service.updateEvent(dto, pathname);
 
-		return "redirect:/event/event";
+		return "redirect:/event/article?pageNum="+pageNum+"&eventNum="+dto.getEventNum();
+	}
+	@RequestMapping(value="/event/delete")
+	public ModelAndView deleteEvent(HttpSession session,
+			@RequestParam(value="eventNum") int eventNum,
+			@RequestParam(value="pageNum") String pageNum) throws Exception {
+		SessionInfo info=(SessionInfo)session.getAttribute("member");
+		if(info==null){
+			return new ModelAndView("redirect:/member/login");
+		}
+		
+		Event dto=service.readEvent(eventNum);
+		if(dto==null){
+			return new ModelAndView("redirect:/event/eventlist?pageNum="+pageNum);
+		}
+		if(! info.getUserId().equals(dto.getUserId()) && ! info.getUserId().equals("admin")){
+			return new ModelAndView("redirect:/event/eventlist?pageNum="+pageNum);
+		}
+		service.deleteEvent(eventNum);
+		return new ModelAndView("redirect:/event/event");
 	}
 }

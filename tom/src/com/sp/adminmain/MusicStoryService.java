@@ -9,6 +9,6 @@ public interface MusicStoryService {
 	public int dataCount(Map<String,Object> map);
 	public MusicStory readMusicStory(int num);
 	public int updateHitCount(int num);
-	public int updateMusicStory(MusicStory dto);
+	public int updateMusicStory(MusicStory dto, String pathname);
 	public int deleteMusicStory(int num);
 }

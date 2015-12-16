@@ -76,12 +76,22 @@ public class MusicStoryServiceImpl implements MusicStoryService {
 		return result;
 	}
 	@Override
-	public int updateMusicStory(MusicStory dto) {
+	public int updateMusicStory(MusicStory dto, String pathname) {
 		int result=0;
 		
 		try {
-			dao.updateData("musicstory.updateMusicStory", dto);
-			//result=1;
+			if(dto.getUpload() !=null && !dto.getUpload().isEmpty()) {
+				String newFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
+				
+				if(newFilename !=null) {
+					MusicStory vo = readMusicStory(dto.getNum());
+					if(vo!=null && vo.getImageFilename()!=null) {
+						fileManager.doFileDelete(vo.getImageFilename(), pathname);
+					}
+					dto.setImageFilename(newFilename);
+				}
+			}
+			result=dao.updateData("musicstory.updateMusicStory", dto);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

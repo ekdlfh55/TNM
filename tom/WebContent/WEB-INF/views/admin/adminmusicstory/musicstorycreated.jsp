@@ -109,14 +109,7 @@ function storycheck() {
 					</section>
 				</div>
 			</div>
-			<c:if test="${mode=='update'}">
-			<div>
-			 <div class="col-md-12">
-			     <label class="label">첨부된파일 </label>
-			     <label>${dto.imageFilename}</label>
-			  </div>
-			</div>
-			</c:if>
+			
 			<div class="row">
 				<div class="col-md-12">
 					<section>
@@ -149,6 +142,7 @@ function storycheck() {
 					onclick="window.history.back();">돌아가기</button>
 				<input type="hidden" name="pageNum" value="${pageNum}">
                 <input type="hidden" name="num" value="${dto.num}">    
+                <input type="hidden" name="imageFilename" value="${dto.imageFilename}">
 			</footer>
 		</c:if>
 		

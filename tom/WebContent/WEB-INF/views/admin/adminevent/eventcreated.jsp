@@ -65,7 +65,7 @@ function eventcheck() {
 					<section>
 						<label class="input"> <i
 							class="icon-append fa fa-calendar"></i> <input type="date"
-							name="createdend" id="createdend" placeholder="끝나는날" value="${dto.creatdend}">
+							name="createdend" id="createdend" placeholder="끝나는날" value="${dto.createdend}">
 						</label>
 					</section>
 
@@ -86,21 +86,13 @@ function eventcheck() {
 				</div>
 				<div class="col-md-5">
 					<section>
-						<label class="label">앨범표지 </label> 
+						<label class="label">이벤트사진 </label> 
 						<label for="file"class="input input-file">	
 								<input type="file" name="upload">
 						</label>
 					</section>
 				</div>
 			</div>
-			<c:if test="${mode=='update'}">
-			<div>
-			 <div class="col-md-12">
-			     <label class="label">첨부된파일 </label>
-			     <label>${dto.eventFilename}</label>
-			  </div>
-			</div>
-			</c:if>
 	
 	
 			<div class="row">
@@ -134,7 +126,8 @@ function eventcheck() {
 				<button type="button" class="btn-u btn-u-default"
 					onclick="window.history.back();">돌아가기</button>
 				<input type="hidden" name="pageNum" value="${pageNum}">
-                <input type="hidden" name="eventNum" value="${dto.eventNum}">    
+                <input type="hidden" name="eventNum" value="${dto.eventNum}"> 
+                <input type="hidden" name="eventFilename" value="${dto.eventFilename}">   
 			</footer>
 		</c:if>
 		

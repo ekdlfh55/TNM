@@ -219,10 +219,11 @@ public class AdminMusicStoryController {
 		if(info==null) {
 			return "redirect:/memeber/login";
 		}
-		
-		service.updateMusicStory(dto);
+		String root = session.getServletContext().getRealPath("/");
+		String pathname = root + File.separator + "uploads" + File.separator + "photo";
+		service.updateMusicStory(dto, pathname);
 
-		return "redirect:/musicstory/story";
+		return "redirect:/musicstory/article?pageNum="+pageNum+"&num="+dto.getNum();
 	}
 	@RequestMapping(value="/musicstory/delete")
 	public ModelAndView deleteMusicStory(HttpSession session,

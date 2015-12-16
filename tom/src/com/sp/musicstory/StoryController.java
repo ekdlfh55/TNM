@@ -95,34 +95,4 @@ public class StoryController {
 		
 		return mav;
 	}
-	
-	/*@RequestMapping(value="/story/article")
-	public ModelAndView article(
-			HttpSession session,
-			@RequestParam(value="num") int num,
-			@RequestParam(value="pageNum") String pageNum,
-			@RequestParam(value="searchKey", defaultValue="subject") String searchKey,
-			@RequestParam(value="searchValue", defaultValue="") String searchValue
-			) throws Exception{
-		
-		SessionInfo info=(SessionInfo)session.getAttribute("member");
-		
-		searchValue=URLDecoder.decode(searchValue, "utf-8");
-		
-		//조회수 증가
-		service.updateHitCount(num);
-		
-		//해당 레코드 가져오기
-		MusicStory dto=service.readMusicStory(num);
-		
-		if(dto==null)
-			return new ModelAndView("redirect:/story/article.do?pageNum="+pageNum);
-		
-		ModelAndView mav= new ModelAndView(".story.article");
-		
-		mav.addObject("dto", dto);
-		mav.addObject("pageNum", pageNum);
-		
-		return mav;
-	}*/
 }

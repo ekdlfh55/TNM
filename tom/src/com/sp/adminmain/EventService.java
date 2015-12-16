@@ -8,6 +8,7 @@ public interface EventService {
 	public List<Event> listEvent(Map<String,Object> map);
 	public int dataCount(Map<String,Object> map);
 	public Event readEvent(int eventNum);
-	public int updateEvent(Event dto);
+	public int updateEvent(Event dto, String pathname);
+	public int deleteEvent(int eventNum);
 	
 }

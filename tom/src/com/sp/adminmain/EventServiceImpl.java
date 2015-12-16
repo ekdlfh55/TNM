@@ -70,10 +70,32 @@ public class EventServiceImpl implements EventService{
 	}
 
 	@Override
-	public int updateEvent(Event dto) {
+	public int updateEvent(Event dto, String pathname) {
 		int result=0;
 		try {
-			dao.updateData("event.updateEvent", dto);
+			if(dto.getUpload() !=null && !dto.getUpload().isEmpty()) {
+				String newFilename=fileManager.doFileUpload(dto.getUpload(), pathname);
+				
+				if(newFilename !=null) {
+					Event vo = readEvent(dto.getEventNum());
+					if(vo!=null && vo.getEventFilename()!=null) {
+						fileManager.doFileDelete(vo.getEventFilename(), pathname);
+					}
+					dto.setEventFilename(newFilename);
+				}
+			}
+			result=dao.updateData("event.updateEvent", dto);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteEvent(int eventNum) {
+		int result=0;
+		try {
+			result=dao.deleteData("event.deleteEvent", eventNum);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

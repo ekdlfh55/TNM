@@ -25,11 +25,16 @@ $(function(){
 
 function listPage(page) {
 	var url;
+	var eventNum="${eventNum}";
+	if(eventNum=="") eventNum="0";
+	var pageNum="${pageNum}";
+	if(pageNum=="") pageNum="1";
+	
 	if(active=="list")
 	    url="<%=cp%>/admin/event/eventlist.do";
 	else if(active=="created")
-		url="<%=cp%>/admin/event/eventcreatedform.do";
-	var params="pageNo="+page;
+		url="<%=cp%>/admin/event/eventcreatedform.do?eventNum="+eventNum+"&pageNum="+pageNum;
+	var params="pageNum="+page;
 	$.ajax({
 		type:"post"
 		,url:url
